@@ -36,10 +36,26 @@ public class ModelConnexion {
 		}
 		return courant;
 	}
+	
+	
 
 	
 	// Actons
 	
+	public CompteActif getCompteActif() {
+		return compteActif;
+	}
+
+
+
+
+	public void setCompteActif(CompteActif compteActif) {
+		this.compteActif = compteActif;
+	}
+
+
+
+
 	public String connect() {
 	    
 	    DtoCompte dto = serviceConnexion.sessionUtilisateurOuvrir( courant.getPseudo(), courant.getMotDePasse() );
@@ -52,8 +68,11 @@ public class ModelConnexion {
 //			} catch (ServletException e) {
 //				throw new RuntimeException( e );
 //			}
-
+	    	System.out.println(compteActif);
+	    	compteActif.setId(dto.getId());
 	        compteActif.setPseudo( dto.getPseudo() );
+	        compteActif.setMotDePasse(dto.getMotDePasse());
+	        compteActif.setEmail(dto.getEmail());
 	        compteActif.setRoles( dto.getRoles() );
 	        
 	    	modelInfo.setTitre( "Bienvenue" );

@@ -25,9 +25,11 @@
 <div id="header">
 	<h:outputText value="&nbsp;" rendered="#{not compteActif.loggedIn}" />
 	<h:form rendered="#{compteActif.loggedIn}">
-		<h:link outcome="comptes" value="Personnes" rendered="#{compteActif.utilisateur }" />
+		<h:link outcome="profil" value="Profil" rendered="#{compteActif.utilisateur }" />
+		<h:link outcome="demandesAmis" value="Demander amitié" rendered="#{compteActif.utilisateur }" />
 		<h:panelGroup rendered="#{compteActif.admininstrateur}">
-			<h:link outcome="comptes" value="Catégories"  />
+			<h:link outcome="comptes" value="Personnes" rendered="#{compteActif.utilisateur }" />
+			<h:link outcome="catégories" value="Catégories"  />
 			<h:link outcome="comptes" value="Comptes"  />
 		</h:panelGroup>
 		<h:commandLink action="#{compteActif.disconnect()}" value="Déconnexion"  />

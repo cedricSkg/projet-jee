@@ -1,0 +1,33 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+     xmlns:h="http://java.sun.com/jsf/html"
+     xmlns:f="http://java.sun.com/jsf/core"
+     xmlns:ui="http://java.sun.com/jsf/facelets"
+     template="/template/page-standard.xhtml" >
+
+     <ui:define name="titre">Liste des catégories</ui:define>
+
+    <ui:define name="contenu">
+
+	<h:form>
+
+		<h:dataTable styleClass="liste" 
+			value="#{modelCategorie.liste}" var="item" 
+			rowClasses="impair, pair" columnClasses="left,left,center"
+		>	
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="Libelle" />
+				</f:facet>
+				#{item.libelle}
+			</h:column>
+			
+		</h:dataTable>
+		
+		<br />
+
+	</h:form>
+
+	</ui:define>
+
+</ui:composition>

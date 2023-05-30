@@ -14,14 +14,12 @@ public class Categorie implements Serializable {
 	
 	// Champs
 
-    private Integer        	id;
+    private Integer        	idCategorie;
     
 	@NotBlank( message = "Le libellé doit être renseigné")
 	@Size(max=25, message = "Valeur trop longue pour le libellé : 25 car. maxi" )
     private String      	libelle;
 	
-	private LocalDate		debut;
-    
     
     // Constructeurs
     
@@ -30,19 +28,19 @@ public class Categorie implements Serializable {
 
     public Categorie(Integer id, String libelle) {
 		super();
-		this.id = id;
+		this.idCategorie = id;
 		this.libelle = libelle;
 	}
     
     
     // Getters & setters
 
-	public Integer getId() {
-        return id;
+	public Integer getIdCategorie() {
+        return idCategorie;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setIdCategorie(Integer id) {
+        this.idCategorie = id;
     }
 
     public String getLibelle() {
@@ -53,14 +51,6 @@ public class Categorie implements Serializable {
         this.libelle = libelle;
     }
     
-    public LocalDate getDebut() {
-		return debut;
-	}
-    
-    public void setDebut(LocalDate debut) {
-		this.debut = debut;
-	}
-
     
     // toString()
     
@@ -74,7 +64,7 @@ public class Categorie implements Serializable {
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(id);
+		return Objects.hash(idCategorie);
 	}
 
 	@Override
@@ -86,7 +76,7 @@ public class Categorie implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		var other = (Categorie) obj;
-		return Objects.equals(id, other.id);
+		return Objects.equals(idCategorie, other.idCategorie);
 	}
 
 }

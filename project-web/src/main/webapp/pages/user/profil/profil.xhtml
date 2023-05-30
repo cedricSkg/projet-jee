@@ -1,0 +1,133 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="/template/page-standard.xhtml">
+<f:metadata>
+	<f:viewAction action="#{utilJsf.messageFromRequestAttribute()}" />
+</f:metadata>
+	<ui:define name="titre">Bienvenue à toi #{modelConnexion.compteActif.pseudo}</ui:define>
+
+	<ui:define name="contenu">
+
+		<h3>Informations personnelles</h3>
+		<h:form>
+
+			<h:dataTable styleClass="liste" value="#{modelConnexion.compteActif}"
+				var="item" rowClasses="impair, pair"
+				columnClasses="left,left,center">
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Pseudo" />
+					</f:facet>
+				#{item.pseudo}
+			</h:column>
+
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Email" />
+					</f:facet>
+				#{item.email}
+			</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Mot de passe" />
+					</f:facet>
+				#{item.motDePasse}
+			</h:column>
+
+
+
+			</h:dataTable>
+
+
+		</h:form>
+		<h3>Demandes en amis</h3>
+		<h:form>
+
+			<h:dataTable styleClass="liste" value="#{modelAmis.listeDemandeAmis}"
+				var="item" rowClasses="impair, pair"
+				columnClasses="left,left,center">
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Demandeur" />
+					</f:facet>
+				#{modelAmis.afficherPseudoCompte(item.idDemandeur).pseudo}
+			</h:column>
+
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Receveur" />
+					</f:facet>
+					#{modelAmis.afficherPseudoCompte(item.idReceveur).pseudo}
+			</h:column>
+
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Status" />
+					</f:facet>
+				#{item.status}
+			</h:column>
+			
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Actions" />
+					</f:facet>
+					<h:commandButton value="Accepter demande en amis"
+						action="#{modelAmis.accepterAmitie(item.idAmis, modelAmis.afficherPseudoCompte(item.idDemandeur))}"
+						image="#{ resource['images:check.png'] }"
+						title="Accepter demander en amis" styleClass="image-action">
+						<f:ajax render="@form" execute="@form" />
+					</h:commandButton>
+					<h:commandButton value="Refuser demande en amis"
+						action="#{modelAmis.refuserAmitie(item.idAmis, modelAmis.afficherPseudoCompte(item.idDemandeur))}"
+						image="#{ resource['images:cross.png'] }"
+						title="Refuser demander en amis" styleClass="image-action">
+						<f:ajax render="@form" execute="@form" />
+					</h:commandButton>
+				</h:column>
+				
+			</h:dataTable>
+
+		</h:form>
+		
+		<h3>Liste d'amis</h3>
+		<h:form>
+
+			<h:dataTable styleClass="liste" value="#{modelAmis.listeAmis}"
+				var="item" rowClasses="impair, pair"
+				columnClasses="left,left,center">
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Pseudo" />
+					</f:facet>
+				#{modelAmis.afficherPseudoCompte(item.idDemandeur).pseudo}
+			</h:column>
+
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="E-mail" />
+					</f:facet>
+					#{modelAmis.afficherPseudoCompte(item.idDemandeur).email}
+			</h:column>
+			
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Actions" />
+					</f:facet>
+					<h:commandButton value="Supprimer la demande en amis"
+						action="#{modelAmis.supprimerAmitie(item.idAmis, modelAmis.afficherPseudoCompte(item.idDemandeur))}"
+						image="#{ resource['images:cross.png'] }"
+						title="Supprimer la demande en amis" styleClass="image-action">
+						<f:ajax render="@form" execute="@form" />
+					</h:commandButton>
+				</h:column>
+				
+			</h:dataTable>
+
+		</h:form>
+
+	</ui:define>
+
+</ui:composition>

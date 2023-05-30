@@ -31,6 +31,10 @@ public class Compte implements Serializable  {
 	private String		email;
 	
 	private List<String> roles = new ArrayList<>();	
+	
+	private List<Compte> demandesAmis = new ArrayList<>();	
+	
+	private List<Compte> amis = new ArrayList<>();	
 
 	
 	// Constructeurs
@@ -93,6 +97,22 @@ public class Compte implements Serializable  {
 	public boolean isInRole( String role ) {
 		return roles.contains( role );
 	}
+	
+	public List<Compte> getDemandesAmis() {
+		return demandesAmis;
+	}
+
+	public void setDemandesAmis(List<Compte> demandesAmis) {
+		this.demandesAmis = demandesAmis;
+	}
+
+	public List<Compte> getAmis() {
+		return amis;
+	}
+
+	public void setAmis(List<Compte> amis) {
+		this.amis = amis;
+	}
 
 	
 	// hashCode() & equals()
@@ -112,6 +132,12 @@ public class Compte implements Serializable  {
 			return false;
 		var other = (Compte) obj;
 		return Objects.equals(id, other.id);
+	}
+
+	@Override
+	public String toString() {
+		return "Compte [id=" + id + ", pseudo=" + pseudo + ", motDePasse=" + motDePasse + ", email=" + email
+				+ ", roles=" + roles + "]";
 	}
 	
 }

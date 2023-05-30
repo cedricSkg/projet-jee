@@ -35,7 +35,7 @@ public class ConverterCategorie implements Converter<Categorie> {
 
 		var id = Integer.valueOf("x"+value);
 		for (Categorie item : items) {
-			if (item.getId().equals(id)) {
+			if (item.getIdCategorie().equals(id)) {
 				return item;
 			}
 		}
@@ -48,6 +48,6 @@ public class ConverterCategorie implements Converter<Categorie> {
 		if (item == null) {
 			return "";
 		}
-		return String.valueOf(item.getId());
+		return String.valueOf(item.getIdCategorie());
 	}
 }
