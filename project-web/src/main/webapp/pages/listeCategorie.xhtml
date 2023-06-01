@@ -1,32 +1,42 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
-     xmlns:h="http://java.sun.com/jsf/html"
-     xmlns:f="http://java.sun.com/jsf/core"
-     xmlns:ui="http://java.sun.com/jsf/facelets"
-     template="/template/page-standard.xhtml" >
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="/template/page-standard.xhtml">
 
-     <ui:define name="titre">Liste des catégories</ui:define>
+	<ui:define name="titre">Liste des catégories</ui:define>
 
-    <ui:define name="contenu">
+	<ui:define name="contenu">
 
-	<h:form>
+		<h:form>
 
-		<h:dataTable styleClass="liste" 
-			value="#{modelCategorie.liste}" var="item" 
-			rowClasses="impair, pair" columnClasses="left,left,center"
-		>	
-			<h:column>
-				<f:facet name="header">
-					<h:outputText value="Libelle" />
-				</f:facet>
-				#{item.libelle}
+			<h:dataTable styleClass="liste" value="#{modelCategorie.liste}"
+				var="item" rowClasses="impair, pair"
+				columnClasses="left,left,center">
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Catégories" />
+					</f:facet>
+				<b>#{item.libelle}</b>
+						<h:dataTable styleClass="liste" value="#{modelDocument.getListeDocumentsParCategorie(item.idCategorie)}"
+						var="itemI" rowClasses="impair, pair"
+						columnClasses="left,left,center">
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Livres" />
+							</f:facet>
+				#{itemI.sujet}
 			</h:column>
-			
-		</h:dataTable>
-		
-		<br />
 
-	</h:form>
+					</h:dataTable>
+				</h:column>
+
+			</h:dataTable>
+
+			<br />
+
+		</h:form>
 
 	</ui:define>
 

@@ -16,11 +16,13 @@ public class Categorie {
     // Champs
     
 	@Id
+	@Column( name = "idcategorie" ) 
 	@GeneratedValue( strategy = IDENTITY )
     private int         	idcategorie;
     
 	@Column( name = "libelle" ) 
     private String      	libelle;
+	
 	
 	
 	// Constructeurs
@@ -56,10 +58,7 @@ public class Categorie {
     
     
     // soString()
-    @Override
-    public String toString() {
-    	return libelle;
-    }
+
 
     
 	// hashcode() & equals()
@@ -84,6 +83,11 @@ public class Categorie {
 		if (idcategorie != other.idcategorie)
 			return false;
 		return true;
+	}
+
+	@Override
+	public String toString() {
+		return "Categorie [idcategorie=" + idcategorie + ", libelle=" + libelle + "]";
 	}
     
 }

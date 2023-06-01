@@ -3,11 +3,11 @@ package projet.commun.dto;
 import java.io.Serializable;
 
 @SuppressWarnings("serial")
-public class DtoLivre implements Serializable {
+public class DtoDocument implements Serializable {
 
 	// Champs
 
-	private int idLivre;
+	private int idDocument;
 
 	private String sujet;
 	
@@ -15,13 +15,13 @@ public class DtoLivre implements Serializable {
 
 	// Constructeurs
 
-	public DtoLivre() {
+	public DtoDocument() {
 	}
 
 
-	public DtoLivre(int idLivre, String sujet, String url) {
+	public DtoDocument(int idDocument, String sujet, String url) {
 		super();
-		this.idLivre = idLivre;
+		this.idDocument = idDocument;
 		this.sujet = sujet;
 		this.url = url;
 	}
@@ -29,13 +29,13 @@ public class DtoLivre implements Serializable {
 
 	// Getters & setters
 	
-	public int getIdLivre() {
-		return idLivre;
+	public int getIdDocument() {
+		return idDocument;
 	}
 
 
-	public void setIdLivre(int idLivre) {
-		this.idLivre = idLivre;
+	public void setIdDocument(int idDocument) {
+		this.idDocument = idDocument;
 	}
 
 
@@ -61,6 +61,6 @@ public class DtoLivre implements Serializable {
 
 	@Override
 	public String toString() {
-		return "DtoLivre [idLivre=" + idLivre + ", sujet=" + sujet + ", url=" + url + "]";
+		return "DtoDocument [idDocument=" + idDocument + ", sujet=" + sujet + ", url=" + url + "]";
 	}
 }

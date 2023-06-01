@@ -2,6 +2,7 @@ package projet.ejb.service.standard;
 
 import static javax.ejb.TransactionAttributeType.NOT_SUPPORTED;
 
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,7 +17,6 @@ import projet.commun.exception.ExceptionValidation;
 import projet.commun.service.IServiceAmis;
 import projet.ejb.dao.IDaoAmis;
 import projet.ejb.data.Amis;
-import projet.ejb.data.Compte;
 import projet.ejb.data.mapper.IMapperEjb;
 
 @Stateless

@@ -1,7 +1,7 @@
 package projet.jsf.data;
 
 import java.io.Serializable;
-import java.time.LocalDate;
+import java.util.List;
 import java.util.Objects;
 
 import javax.validation.constraints.NotBlank;
@@ -14,12 +14,13 @@ public class Categorie implements Serializable {
 	
 	// Champs
 
-    private Integer        	idCategorie;
+    private Integer        	idcategorie;
     
 	@NotBlank( message = "Le libellé doit être renseigné")
 	@Size(max=25, message = "Valeur trop longue pour le libellé : 25 car. maxi" )
     private String      	libelle;
 	
+	private List<Document> listeLivre;
     
     // Constructeurs
     
@@ -28,7 +29,7 @@ public class Categorie implements Serializable {
 
     public Categorie(Integer id, String libelle) {
 		super();
-		this.idCategorie = id;
+		this.idcategorie = id;
 		this.libelle = libelle;
 	}
     
@@ -36,11 +37,11 @@ public class Categorie implements Serializable {
     // Getters & setters
 
 	public Integer getIdCategorie() {
-        return idCategorie;
+        return idcategorie;
     }
 
     public void setIdCategorie(Integer id) {
-        this.idCategorie = id;
+        this.idcategorie = id;
     }
 
     public String getLibelle() {
@@ -51,20 +52,24 @@ public class Categorie implements Serializable {
         this.libelle = libelle;
     }
     
-    
+	public List<Document> getListeLivre() {
+		return listeLivre;
+	}
+
+	public void setListeLivre(List<Document> listeLivre) {
+		this.listeLivre = listeLivre;
+	}
+	
     // toString()
     
-	@Override
-	public String toString() {
-		return libelle;
-	}
+
 
 	
 	// hashCode() & equals()
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(idCategorie);
+		return Objects.hash(idcategorie);
 	}
 
 	@Override
@@ -76,7 +81,12 @@ public class Categorie implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		var other = (Categorie) obj;
-		return Objects.equals(idCategorie, other.idCategorie);
+		return Objects.equals(idcategorie, other.idcategorie);
+	}
+
+	@Override
+	public String toString() {
+		return "Categorie [idCategorie=" + idcategorie + ", libelle=" + libelle + "]";
 	}
 
 }

@@ -11,16 +11,12 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import projet.commun.dto.DtoAmis;
-import projet.commun.dto.DtoCategorie;
 import projet.commun.dto.DtoCompte;
 import projet.commun.exception.ExceptionValidation;
 import projet.commun.service.IServiceAmis;
-import projet.commun.service.IServiceCategorie;
 import projet.jsf.data.Amis;
-import projet.jsf.data.Categorie;
 import projet.jsf.data.Compte;
 import projet.jsf.data.mapper.IMapperAmis;
-import projet.jsf.data.mapper.IMapperCategorie;
 import projet.jsf.data.mapper.IMapperCompte;
 import projet.jsf.util.UtilJsf;
 
@@ -42,9 +38,6 @@ public class ModelAmis implements Serializable {
 
 	@Inject
 	private IMapperAmis mapper;
-
-	@Inject
-	private IMapperCompte mapperCompte;
 
 	// Getters
 

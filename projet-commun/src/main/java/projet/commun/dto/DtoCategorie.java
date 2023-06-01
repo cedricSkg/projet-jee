@@ -9,7 +9,7 @@ public class DtoCategorie implements Serializable  {
 	
 	// Champs
 	
-	private int			id;
+	private int			idcategorie;
 	
 	private String		libelle;
 	
@@ -20,20 +20,20 @@ public class DtoCategorie implements Serializable  {
 	public DtoCategorie() {
 	}
 
-	public DtoCategorie(int id, String libelle) {
-		this.id = id;
+	public DtoCategorie(int idcategorie, String libelle) {
+		this.idcategorie = idcategorie;
 		this.libelle = libelle;
 	}
 	
 	
 	// Getters & setters
 
-	public int getId() {
-		return id;
+	public int getIdCategorie() {
+		return idcategorie;
 	}
 	
-	public void setId(int id) {
-		this.id = id;
+	public void setId(int idcategorie) {
+		this.idcategorie = idcategorie;
 	}
 
 	public String getLibelle() {
@@ -43,4 +43,11 @@ public class DtoCategorie implements Serializable  {
 	public void setLibelle(String libelle) {
 		this.libelle = libelle;
 	}
+
+	@Override
+	public String toString() {
+		return "DtoCategorie [id=" + idcategorie + ", libelle=" + libelle + "]";
+	}
+	
+	
 }

@@ -3,6 +3,7 @@ package projet.ejb.dao.jpa;
 import static javax.ejb.TransactionAttributeType.MANDATORY;
 
 
+
 import static javax.ejb.TransactionAttributeType.NOT_SUPPORTED;
 
 import java.util.List;
@@ -12,8 +13,6 @@ import javax.ejb.Stateless;
 import javax.ejb.TransactionAttribute;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-
-import projet.commun.dto.DtoAmis;
 import projet.ejb.dao.IDaoAmis;
 import projet.ejb.data.Amis;
 import projet.ejb.data.Compte;

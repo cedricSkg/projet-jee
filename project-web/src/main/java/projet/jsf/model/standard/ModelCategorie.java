@@ -100,6 +100,6 @@ public class ModelCategorie implements Serializable {
 		return null;
 	}
 	
-}
 
-//TODO: FINIR LISTE CATEGORIES POSSIBLE ERREURS
+	
+}

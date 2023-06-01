@@ -58,6 +58,7 @@ public class ServiceCategorie implements IServiceCategorie {
 		for (Categorie Categorie : daoCategorie.listerTout()) {
 			liste.add(mapper.map(Categorie));
 		}
+
 		return liste;
 	}
 
