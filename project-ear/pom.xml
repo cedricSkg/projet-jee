@@ -28,20 +28,6 @@
     <name>project - ear</name>
     <description>This is the EAR POM file</description>
 
-    <dependencies>
-        <dependency>
-            <groupId>${project.groupId}</groupId>
-            <artifactId>project-ejb</artifactId>
-            <type>ejb</type>
-        </dependency>
-
-        <!-- Depend on the EJB module and WAR so that we can package them -->
-        <dependency>
-            <groupId>${project.groupId}</groupId>
-            <artifactId>project-web</artifactId>
-            <type>war</type>
-        </dependency>
-    </dependencies>
 
     <build>
         <finalName>${project.parent.artifactId}</finalName>
@@ -87,4 +73,16 @@
         </plugins>
     </build>
 
+    <dependencies>
+    	<dependency>
+    		<groupId>${project.groupId}</groupId>
+    		<artifactId>project-web</artifactId>
+    		<type>war</type>
+    	</dependency>
+    	<dependency>
+    		<groupId>${project.groupId}</groupId>
+    		<artifactId>project-ejb</artifactId>
+    		<type>ejb</type>
+    	</dependency>
+    </dependencies>
 </project>
