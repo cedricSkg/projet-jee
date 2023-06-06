@@ -16,6 +16,8 @@ public interface IServiceDocument {
 	DtoDocument		retrouver( int idDocument ) ;
 
 	List<DtoDocument> listerToutDocument(int idCompte);
+	
+	List<DtoDocument> listerToutDocument2(int idCompte);
 
 	List<DtoDocument> listerToutDocumentPourCategorie(int idCategorie);
 

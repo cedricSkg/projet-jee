@@ -105,4 +105,15 @@ public class DaoDocument implements IDaoDocument {
 		return query.getResultList();
 		
 	}
+	
+	
+	@Override
+	@TransactionAttribute( NOT_SUPPORTED )
+	public List<Document> listerToutDocument2(int idCompte) {
+		em.clear();
+		var jpql = "select * from document d , compte c , etre_associer ea, categorie c2, organisation o  WHERE c2.idcategorie = o.id_categorie AND o.id_document = d.id_document AND d.id_document = ea.id_document AND c.idcompte = ea.idcompte ;";
+		var query = em.createQuery( jpql, Document.class );
+		return query.getResultList();
+		
+	}
 }

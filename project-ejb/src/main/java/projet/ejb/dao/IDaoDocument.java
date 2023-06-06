@@ -14,6 +14,8 @@ public interface IDaoDocument {
 	Document 		retrouver( int idDocument );
 
 	List<Document> listerToutDocument(int idCompte);
+	
+	List<Document> listerToutDocument2(int idCompte);
 
 	List<Document> listerToutDocumentPourCategorie(int idCategorie);
 

@@ -51,6 +51,16 @@ public class ModelDocument implements Serializable {
 		}
 		return listeDocument;
 	}
+	
+	public List<Document> getListeDocument2() {
+		if (listeDocument == null) {
+			listeDocument = new ArrayList<>();
+			for (DtoDocument dto : serviceDocument.listerToutDocument2(modelConnexion.getCompteActif().getId())) {
+				listeDocument.add(mapper.map(dto));
+			}
+		}
+		return listeDocument;
+	}
 
 	public List<Document> getListeDocumentsParCategorie(int idCategorie) {
 		List<Document> listeDocumentPourCategorie = new ArrayList<Document>();

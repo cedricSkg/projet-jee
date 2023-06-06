@@ -125,7 +125,31 @@
 				</h:column>
 				
 			</h:dataTable>
+			
+				</h:form>
+			
+			<h3>Mes Documents</h3>
+		<h:form>
 
+			<h:dataTable styleClass="liste" value="#{modelDocument.listeDocument2}"
+				var="item" rowClasses="impair, pair"
+				columnClasses="left,left,center">
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="id" />
+					</f:facet>
+				#{item.idLivre}
+			</h:column>
+
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="livre" />
+					</f:facet>
+				#{item.sujet}
+			</h:column>
+				
+			</h:dataTable>
+	
 		</h:form>
 
 	</ui:define>

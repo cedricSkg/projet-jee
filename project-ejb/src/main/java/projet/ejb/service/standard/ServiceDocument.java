@@ -61,6 +61,18 @@ public class ServiceDocument implements IServiceDocument {
 			liste.add(mapper.map(Document));
 		}
 		return liste;
+		
+	
+	}
+	
+	@Override
+	@TransactionAttribute(NOT_SUPPORTED)
+	public List<DtoDocument> listerToutDocument2(int idCompte) {
+		List<DtoDocument> liste = new ArrayList<>();
+		for (Document Document : daoDocument.listerToutDocument(idCompte)) {
+			liste.add(mapper.map(Document));
+		}
+		return liste;
 	}
 	
 	@Override
