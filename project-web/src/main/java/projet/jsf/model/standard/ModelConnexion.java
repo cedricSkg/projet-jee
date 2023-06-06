@@ -68,7 +68,6 @@ public class ModelConnexion {
 //			} catch (ServletException e) {
 //				throw new RuntimeException( e );
 //			}
-	    	System.out.println(compteActif);
 	    	compteActif.setId(dto.getId());
 	        compteActif.setPseudo( dto.getPseudo() );
 	        compteActif.setMotDePasse(dto.getMotDePasse());

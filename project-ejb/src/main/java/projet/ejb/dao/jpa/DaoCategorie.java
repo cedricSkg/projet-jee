@@ -34,7 +34,7 @@ public class DaoCategorie implements IDaoCategorie {
 	public int inserer(Categorie categorie) {
 		em.persist(categorie);
 		em.flush();
-		return categorie.getId();
+		return categorie.getIdCategorie();
 	}
 
 	@Override

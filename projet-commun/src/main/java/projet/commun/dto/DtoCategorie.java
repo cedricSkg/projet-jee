@@ -1,6 +1,7 @@
 package projet.commun.dto;
 
-import java.io.Serializable; 
+import java.io.Serializable;
+import java.util.Objects; 
 
 
 @SuppressWarnings("serial")
@@ -32,7 +33,7 @@ public class DtoCategorie implements Serializable  {
 		return idcategorie;
 	}
 	
-	public void setId(int idcategorie) {
+	public void setIdCategorie(int idcategorie) {
 		this.idcategorie = idcategorie;
 	}
 
@@ -42,6 +43,25 @@ public class DtoCategorie implements Serializable  {
 
 	public void setLibelle(String libelle) {
 		this.libelle = libelle;
+	}
+	
+	
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(idcategorie);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		DtoCategorie other = (DtoCategorie) obj;
+		return Objects.equals(idcategorie, other.idcategorie);
 	}
 
 	@Override

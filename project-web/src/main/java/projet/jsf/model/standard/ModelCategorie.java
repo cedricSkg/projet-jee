@@ -59,6 +59,7 @@ public class ModelCategorie implements Serializable {
 	// Initialisaitons
 	
 	public String actualiserCourant() {
+		
 		if ( courant != null ) {
 			DtoCategorie dto = serviceCategorie.retrouver( courant.getIdCategorie() ); 
 			if ( dto == null ) {
@@ -82,7 +83,7 @@ public class ModelCategorie implements Serializable {
 				serviceCategorie.modifier( mapper.map(courant) );
 			}
 			UtilJsf.messageInfo( "Mise à jour effectuée avec succès." );
-			return "liste";
+			return "catégories";
 		} catch (ExceptionValidation e) {
 			UtilJsf.messageError(e);
 			return null;

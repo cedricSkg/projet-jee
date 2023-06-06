@@ -32,8 +32,8 @@ public class ServiceDocument implements IServiceDocument {
 	// Actions
 
 	@Override
-	public int inserer(DtoDocument dtoDocument) throws ExceptionValidation {
-		int id = daoDocument.inserer(mapper.map(dtoDocument));
+	public int inserer(DtoDocument dtoDocument, int idCategorie) throws ExceptionValidation {
+		int id = daoDocument.inserer(mapper.map(dtoDocument), idCategorie);
 		return id;
 	}
 

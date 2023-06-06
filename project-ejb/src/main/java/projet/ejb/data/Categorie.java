@@ -2,10 +2,14 @@ package projet.ejb.data;
 
 import static javax.persistence.GenerationType.IDENTITY;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -23,7 +27,8 @@ public class Categorie {
 	@Column( name = "libelle" ) 
     private String      	libelle;
 	
-	
+    @OneToMany(mappedBy = "categorie", cascade = CascadeType.ALL)
+    private List<Organisation> organisation;
 	
 	// Constructeurs
 
@@ -40,11 +45,11 @@ public class Categorie {
     
     // Getters & setters
 
-    public int getId() {
+    public int getIdCategorie() {
         return idcategorie;
     }
 
-    public void setId(int id) {
+    public void setIdCategorie(int id) {
         this.idcategorie = id;
     }
 

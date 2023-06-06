@@ -18,24 +18,34 @@
 					<f:facet name="header">
 						<h:outputText value="Catégories" />
 					</f:facet>
-				<b>#{item.libelle}</b>
-						<h:dataTable styleClass="liste" value="#{modelDocument.getListeDocumentsParCategorie(item.idCategorie)}"
-						var="itemI" rowClasses="impair, pair"
-						columnClasses="left,left,center">
-						<h:column>
-							<f:facet name="header">
-								<h:outputText value="Livres" />
-							</f:facet>
-				#{itemI.sujet}
-			</h:column>
-
-					</h:dataTable>
+					<b>#{item.libelle}</b>
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Actions" />
+					</f:facet>
+					<h:button outcome="listeDocuments?id=#{item.idCategorie}"
+						image="#{ resource['images:voir.png'] }"
+						title="Voir la liste des documents" styleClass="image-action" />
+					<h:button outcome="formulaireCategorie?id=#{item.idCategorie}"
+						image="#{ resource['images:modifier.png'] }"
+						title="Modifier catégorie" styleClass="image-action" />
+					<h:button outcome="formulaireDocument?idC=#{item.idCategorie}"
+						image="#{ resource['images:ajouter.png'] }"
+						title="Ajouter document" styleClass="image-action" />
+					<h:commandButton action="#{modelCategorie.supprimer(item)}"
+						value="Supprimer catégorie"
+						onclick="return confirm('Confirmez-vous la suppression ?')"
+						image="#{ resource['images:supprimer.png'] }"
+						title="Supprimer catégorie" styleClass="image-action">
+						<f:ajax render="@form" execute="@form" />
+					</h:commandButton>
 				</h:column>
 
 			</h:dataTable>
 
 			<br />
-
+			<h:button value="Ajouter" outcome="formulaireCategorie" />
 		</h:form>
 
 	</ui:define>

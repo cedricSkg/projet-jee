@@ -8,7 +8,7 @@ public class Document implements Serializable {
 
 	// Champs
 
-	private Integer idLivre;
+	private Integer idDocument;
 
 	private String sujet;
 
@@ -19,21 +19,21 @@ public class Document implements Serializable {
 	public Document() {
 	}
 
-	public Document(Integer idLivre, String sujet, String url) {
+	public Document(Integer idDocument, String sujet, String url) {
 		super();
-		this.idLivre = idLivre;
+		this.idDocument = idDocument;
 		this.sujet = sujet;
 		this.url = url;
 	}
 
 	// Getters & setters
 
-	public Integer getIdLivre() {
-		return idLivre;
+	public Integer getIdDocument() {
+		return idDocument;
 	}
 
-	public void setIdLivre(Integer idLivre) {
-		this.idLivre = idLivre;
+	public void setIdDocument(Integer idDocument) {
+		this.idDocument = idDocument;
 	}
 
 	public String getSujet() {
@@ -55,7 +55,7 @@ public class Document implements Serializable {
 	// hascode & equals
 	@Override
 	public int hashCode() {
-		return Objects.hash(idLivre, sujet, url);
+		return Objects.hash(idDocument, sujet, url);
 	}
 
 	@Override
@@ -67,14 +67,14 @@ public class Document implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		Document other = (Document) obj;
-		return Objects.equals(idLivre, other.idLivre) && Objects.equals(sujet, other.sujet)
+		return Objects.equals(idDocument, other.idDocument) && Objects.equals(sujet, other.sujet)
 				&& Objects.equals(url, other.url);
 	}
 
 // tostring
 	@Override
 	public String toString() {
-		return "Livre [idLivre=" + idLivre + ", sujet=" + sujet + ", url=" + url + "]";
+		return "Document [idDocument=" + idDocument + ", sujet=" + sujet + ", url=" + url + "]";
 	}
 
 }

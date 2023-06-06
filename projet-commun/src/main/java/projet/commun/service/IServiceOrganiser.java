@@ -7,7 +7,7 @@ import projet.commun.dto.DtoDocument;
 import projet.commun.exception.ExceptionValidation;
 
 
-public interface IServiceDocument {
+public interface IServiceOrganiser {
 
 	void			modifier( DtoDocument dtoDocument ) throws ExceptionValidation; 
 
