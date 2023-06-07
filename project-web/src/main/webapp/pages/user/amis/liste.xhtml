@@ -1,55 +1,46 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
-     xmlns:h="http://java.sun.com/jsf/html"
-     xmlns:f="http://java.sun.com/jsf/core"
-     xmlns:ui="http://java.sun.com/jsf/facelets"
-     template="/template/page-standard.xhtml" >
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    template="/template/page-standard.xhtml">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" />
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
-     <ui:define name="titre">Demander amitié</ui:define>
+    <ui:define name="titre">Demander amitié</ui:define>
 
     <ui:define name="contenu">
+        <div class="container">
+            <h:form>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Pseudo</th>
+                            <th>Email</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <ui:repeat value="#{modelCompte.listeAutresComptes}" var="item">
+                            <tr>
+                                <td>#{item.pseudo}</td>
+                                <td>#{item.email}</td>
+                                <td>
+                                    <h:commandButton value="Demander en amis" action="#{modelAmis.demanderAmitie(item)}"
+                                        styleClass="btn btn-primary" style="padding: 5px 10px;">
+                                        <f:ajax render="@form" execute="@form" />
+                                    </h:commandButton>
+                                </td>
+                            </tr>
+                        </ui:repeat>
+                    </tbody>
+                </table>
+            </h:form>
+        </div>
+    </ui:define>
 
-	<h:form>
-
-		<h:dataTable styleClass="liste" 
-			value="#{modelCompte.listeAutresComptes}" var="item" 
-			rowClasses="impair, pair" columnClasses="left,left,center"
-		>
-			<h:column>
-				<f:facet name="header">
-					<h:outputText value="Pseudo" />
-				</f:facet>
-				#{item.pseudo}
-			</h:column>
-			
-			<h:column>
-				<f:facet name="header">
-					<h:outputText value="Email" />
-				</f:facet>
-				#{item.email}
-			</h:column>
-			
-			
-			<h:column>
-				<f:facet name="header">
-					<h:outputText value="Actions" />
-				</f:facet>
-				<h:commandButton 
-					value="Demander en amis" action="#{modelAmis.demanderAmitie(item)}" 
-					image="#{ resource['images:demanderAmitier.png'] }" 
-					title="Demander en amis"
-					styleClass="image-action"
-				>
-					<f:ajax render="@form" execute="@form" />				
-				</h:commandButton>
-			</h:column>
-			
-		</h:dataTable>
-		
-	</h:form>
-
-	</ui:define>
-<f:metadata>
-	<f:viewAction action="#{utilJsf.messageFromRequestAttribute()}" />
-</f:metadata>
+    <f:metadata>
+        <f:viewAction action="#{utilJsf.messageFromRequestAttribute()}" />
+    </f:metadata>
 </ui:composition>

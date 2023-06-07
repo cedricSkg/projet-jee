@@ -8,46 +8,41 @@
 	<ui:define name="titre">Liste des catégories</ui:define>
 
 	<ui:define name="contenu">
-
 		<h:form>
 
-			<h:dataTable styleClass="liste" value="#{modelCategorie.liste}"
-				var="item" rowClasses="impair, pair"
-				columnClasses="left,left,center">
-				<h:column>
-					<f:facet name="header">
-						<h:outputText value="Catégories" />
-					</f:facet>
-					<b>#{item.libelle}</b>
-				</h:column>
-				<h:column>
-					<f:facet name="header">
-						<h:outputText value="Actions" />
-					</f:facet>
-					<h:button outcome="listeDocuments?id=#{item.idCategorie}"
-						image="#{ resource['images:voir.png'] }"
-						title="Voir la liste des documents" styleClass="image-action" />
-					<h:button outcome="formulaireCategorie?id=#{item.idCategorie}"
-						image="#{ resource['images:modifier.png'] }"
-						title="Modifier catégorie" styleClass="image-action" />
-					<h:button outcome="formulaireDocument?idC=#{item.idCategorie}"
-						image="#{ resource['images:ajouter.png'] }"
-						title="Ajouter document" styleClass="image-action" />
-					<h:commandButton action="#{modelCategorie.supprimer(item)}"
-						value="Supprimer catégorie"
-						onclick="return confirm('Confirmez-vous la suppression ?')"
-						image="#{ resource['images:supprimer.png'] }"
-						title="Supprimer catégorie" styleClass="image-action">
-						<f:ajax render="@form" execute="@form" />
-					</h:commandButton>
-				</h:column>
-
-			</h:dataTable>
+			<table class="table table-striped">
+				<thead>
+					<tr>
+						<th>Catégories</th>
+						<th>Actions</th>
+					</tr>
+				</thead>
+				<tbody>
+					<ui:repeat value="#{modelCategorie.liste}" var="item">
+						<tr>
+							<td><b>#{item.libelle}</b></td>
+							<td><h:button
+									outcome="listeDocuments?id=#{item.idCategorie}"
+									styleClass="btn btn-primary btn-sm"
+									value="Voir la liste des documents">
+								</h:button> <h:button outcome="formulaireCategorie?id=#{item.idCategorie}"
+									styleClass="btn btn-primary btn-sm" value="Modifier catégorie">
+								</h:button> <h:button outcome="formulaireDocument?idC=#{item.idCategorie}"
+									styleClass="btn btn-primary btn-sm" value="Ajouter document">
+								</h:button> <h:commandButton action="#{modelCategorie.supprimer(item)}"
+									title="Supprimer catégorie"
+									onclick="return confirm('Confirmez-vous la suppression ?')"
+									styleClass="btn btn-danger btn-sm" value="Supprimer catégorie">
+									<f:ajax render="@form" execute="@form" />
+								</h:commandButton></td>
+						</tr>
+					</ui:repeat>
+				</tbody>
+			</table>
 
 			<br />
-			<h:button value="Ajouter" outcome="formulaireCategorie" />
+			<h:button value="Ajouter" outcome="formulaireCategorie"
+				styleClass="btn btn-success" />
 		</h:form>
-
 	</ui:define>
-
 </ui:composition>

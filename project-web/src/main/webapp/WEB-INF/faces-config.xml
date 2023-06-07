@@ -26,6 +26,7 @@
 			<from-outcome>profil</from-outcome>
 			<to-view-id>/pages/user/profil/profil.xhtml</to-view-id>
 		</navigation-case>
+
 		<navigation-case>
 			<from-outcome>demandesAmis</from-outcome>
 			<to-view-id>/pages/user/amis/liste.xhtml</to-view-id>

@@ -20,7 +20,7 @@ import projet.ejb.dao.IDaoAmis;
 import projet.ejb.dao.IDaoCategorie;
 import projet.ejb.dao.IDaoDocument;
 import projet.ejb.data.Document;
-import projet.ejb.data.Organisation;
+import projet.ejb.data.Organiser;
 import projet.ejb.data.Compte;
 
 
@@ -51,7 +51,7 @@ public class DaoDocument implements IDaoDocument {
 	    em.merge(document);
 	    em.flush();
 
-	    var elt = new Organisation(daoCategorie.retrouver(idCategorie), retrouver((int)getCurrentIdValue()));
+	    var elt = new Organiser(daoCategorie.retrouver(idCategorie), retrouver((int)getCurrentIdValue()));
 	    daoOrganiser.inserer(elt);
 	    System.out.println(elt);
 
@@ -101,7 +101,7 @@ public class DaoDocument implements IDaoDocument {
 
 		var query = em.createQuery(jpqlQuery, Document.class);
 		query.setParameter("categoryId", idCategorie);
-
+System.out.println(query.getResultList());
 		return query.getResultList();
 		
 	}
@@ -111,8 +111,9 @@ public class DaoDocument implements IDaoDocument {
 	@TransactionAttribute( NOT_SUPPORTED )
 	public List<Document> listerToutDocument2(int idCompte) {
 		em.clear();
-		var jpql = "select * from document d , compte c , etre_associer ea, categorie c2, organisation o  WHERE c2.idcategorie = o.id_categorie AND o.id_document = d.id_document AND d.id_document = ea.id_document AND c.idcompte = ea.idcompte ;";
+		var jpql = "SELECT d FROM Document d JOIN d.associer a JOIN a.compte c WHERE c.id = :id";
 		var query = em.createQuery( jpql, Document.class );
+		query.setParameter("id", idCompte);
 		return query.getResultList();
 		
 	}

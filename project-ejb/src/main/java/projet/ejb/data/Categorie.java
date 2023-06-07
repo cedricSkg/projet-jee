@@ -28,7 +28,7 @@ public class Categorie {
     private String      	libelle;
 	
     @OneToMany(mappedBy = "categorie", cascade = CascadeType.ALL)
-    private List<Organisation> organisation;
+    private List<Organiser> organisation;
 	
 	// Constructeurs
 

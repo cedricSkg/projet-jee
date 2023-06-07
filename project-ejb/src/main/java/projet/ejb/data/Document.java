@@ -29,8 +29,12 @@ public class Document {
 	private String url;
 	
     @OneToMany(mappedBy = "document", cascade = CascadeType.ALL)
-    private List<Organisation> organisation;
-	// Constructeurs
+    private List<Organiser> organisation;
+    
+    @OneToMany(mappedBy = "document", cascade = CascadeType.ALL)
+    private List<Associer> associer;
+
+    // Constructeurs
 
 	public Document() {
 		super();

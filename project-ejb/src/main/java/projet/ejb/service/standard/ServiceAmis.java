@@ -3,6 +3,7 @@ package projet.ejb.service.standard;
 import static javax.ejb.TransactionAttributeType.NOT_SUPPORTED;
 
 
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -55,9 +56,9 @@ public class ServiceAmis implements IServiceAmis {
 
 	@Override
 	@TransactionAttribute(NOT_SUPPORTED)
-	public List<DtoAmis> listerToutAmis(int idCompte) {
+	public List<DtoAmis> listerToutAmis(DtoCompte compte) {
 		List<DtoAmis> liste = new ArrayList<>();
-		for (Amis Amis : daoAmis.listerToutAmis(idCompte)) {
+		for (Amis Amis : daoAmis.listerToutAmis(mapper.map(compte))) {
 			liste.add(mapper.map(Amis));
 		}
 		return liste;

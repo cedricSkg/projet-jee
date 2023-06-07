@@ -1,157 +1,200 @@
-<?xml version='1.0' encoding='UTF-8' ?>
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	template="/template/page-standard.xhtml">
-<f:metadata>
-	<f:viewAction action="#{utilJsf.messageFromRequestAttribute()}" />
-</f:metadata>
-	<ui:define name="titre">Bienvenue à toi #{modelConnexion.compteActif.pseudo}</ui:define>
 
-	<ui:define name="contenu">
+	<f:metadata>
+		<f:viewAction action="#{utilJsf.messageFromRequestAttribute()}" />
+	</f:metadata>
 
-		<h3>Informations personnelles</h3>
-		<h:form>
-
-			<h:dataTable styleClass="liste" value="#{modelConnexion.compteActif}"
-				var="item" rowClasses="impair, pair"
-				columnClasses="left,left,center">
-				<h:column>
-					<f:facet name="header">
-						<h:outputText value="Pseudo" />
-					</f:facet>
-				#{item.pseudo}
-			</h:column>
-
-				<h:column>
-					<f:facet name="header">
-						<h:outputText value="Email" />
-					</f:facet>
-				#{item.email}
-			</h:column>
-				<h:column>
-					<f:facet name="header">
-						<h:outputText value="Mot de passe" />
-					</f:facet>
-				#{item.motDePasse}
-			</h:column>
-
-
-
-			</h:dataTable>
-
-
-		</h:form>
-		<h3>Demandes en amis</h3>
-		<h:form>
-
-			<h:dataTable styleClass="liste" value="#{modelAmis.listeDemandeAmis}"
-				var="item" rowClasses="impair, pair"
-				columnClasses="left,left,center">
-				<h:column>
-					<f:facet name="header">
-						<h:outputText value="Demandeur" />
-					</f:facet>
-				#{modelAmis.afficherPseudoCompte(item.idDemandeur).pseudo}
-			</h:column>
-
-				<h:column>
-					<f:facet name="header">
-						<h:outputText value="Receveur" />
-					</f:facet>
-					#{modelAmis.afficherPseudoCompte(item.idReceveur).pseudo}
-			</h:column>
-
-				<h:column>
-					<f:facet name="header">
-						<h:outputText value="Status" />
-					</f:facet>
-				#{item.status}
-			</h:column>
-			
-				<h:column>
-					<f:facet name="header">
-						<h:outputText value="Actions" />
-					</f:facet>
-					<h:commandButton value="Accepter demande en amis"
-						action="#{modelAmis.accepterAmitie(item.idAmis, modelAmis.afficherPseudoCompte(item.idDemandeur))}"
-						image="#{ resource['images:check.png'] }"
-						title="Accepter demander en amis" styleClass="image-action">
-						<f:ajax render="@form" execute="@form" />
-					</h:commandButton>
-					<h:commandButton value="Refuser demande en amis"
-						action="#{modelAmis.refuserAmitie(item.idAmis, modelAmis.afficherPseudoCompte(item.idDemandeur))}"
-						image="#{ resource['images:cross.png'] }"
-						title="Refuser demander en amis" styleClass="image-action">
-						<f:ajax render="@form" execute="@form" />
-					</h:commandButton>
-				</h:column>
-				
-			</h:dataTable>
-
-		</h:form>
-		
-		<h3>Liste d'amis</h3>
-		<h:form>
-
-			<h:dataTable styleClass="liste" value="#{modelAmis.listeAmis}"
-				var="item" rowClasses="impair, pair"
-				columnClasses="left,left,center">
-				<h:column>
-					<f:facet name="header">
-						<h:outputText value="Pseudo" />
-					</f:facet>
-				#{modelAmis.afficherPseudoCompte(item.idDemandeur).pseudo}
-			</h:column>
-
-				<h:column>
-					<f:facet name="header">
-						<h:outputText value="E-mail" />
-					</f:facet>
-					#{modelAmis.afficherPseudoCompte(item.idDemandeur).email}
-			</h:column>
-			
-				<h:column>
-					<f:facet name="header">
-						<h:outputText value="Actions" />
-					</f:facet>
-					<h:commandButton value="Supprimer la demande en amis"
-						action="#{modelAmis.supprimerAmitie(item.idAmis, modelAmis.afficherPseudoCompte(item.idDemandeur))}"
-						image="#{ resource['images:cross.png'] }"
-						title="Supprimer la demande en amis" styleClass="image-action">
-						<f:ajax render="@form" execute="@form" />
-					</h:commandButton>
-				</h:column>
-				
-			</h:dataTable>
-			
-				</h:form>
-			
-			<h3>Mes Documents</h3>
-		<h:form>
-
-			<h:dataTable styleClass="liste" value="#{modelDocument.listeDocument2}"
-				var="item" rowClasses="impair, pair"
-				columnClasses="left,left,center">
-				<h:column>
-					<f:facet name="header">
-						<h:outputText value="id" />
-					</f:facet>
-				#{item.idLivre}
-			</h:column>
-
-				<h:column>
-					<f:facet name="header">
-						<h:outputText value="livre" />
-					</f:facet>
-				#{item.sujet}
-			</h:column>
-				
-			</h:dataTable>
-	
-		</h:form>
-
+	<ui:define name="titre">
+		Bienvenue à toi #{modelConnexion.compteActif.pseudo}
 	</ui:define>
 
+	<ui:define name="contenu">
+		<div class="container">
+			<h3>Informations personnelles</h3>
+			<div class="table-responsive">
+				<h:form>
+					<table class="table">
+						<thead>
+							<tr>
+								<th>Pseudo</th>
+								<th>Email</th>
+								<th>Mot de passe</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>#{modelConnexion.compteActif.pseudo}</td>
+								<td>#{modelConnexion.compteActif.email}</td>
+								<td>#{modelConnexion.compteActif.motDePasse}</td>
+							</tr>
+						</tbody>
+					</table>
+				</h:form>
+			</div>
+
+			<h3>Demandes d'amis</h3>
+			<div class="table-responsive">
+				<h:form>
+					<table class="table">
+						<thead>
+							<tr>
+								<th>Demandeur</th>
+								<th>Receveur</th>
+								<th>Statut</th>
+								<th>Actions</th>
+							</tr>
+						</thead>
+						<tbody>
+							<ui:repeat value="#{modelAmis.listeDemandeAmis}" var="item"
+								varStatus="status">
+								<tr class="#{(status.index % 2 == 0) ? 'even' : 'odd'}">
+									<td>#{item.demandeur.pseudo}</td>
+									<td>#{item.receveur.pseudo}</td>
+									<td>#{item.status}</td>
+									<td><h:commandButton value="Accepter demande d'amis"
+											action="#{modelAmis.accepterAmitie(item.idAmis, modelAmis.afficherPseudoCompte(item.demandeur.id))}"
+											styleClass="btn btn-success">
+											<f:ajax render="@form" execute="@form" />
+										</h:commandButton> <h:commandButton value="Refuser demande d'amis"
+											action="#{modelAmis.refuserAmitie(item.idAmis, modelAmis.afficherPseudoCompte(item.demandeur.id))}"
+											styleClass="btn btn-danger">
+											<f:ajax render="@form" execute="@form" />
+										</h:commandButton></td>
+								</tr>
+							</ui:repeat>
+						</tbody>
+					</table>
+				</h:form>
+			</div>
+
+			<!-- Reste du contenu -->
+
+			<h3>Liste d'amis</h3>
+			<div class="table-responsive">
+				<h:form>
+					<table class="table">
+						<thead>
+							<tr>
+								<th>Pseudo</th>
+								<th>E-mail</th>
+								<th>Actions</th>
+							</tr>
+						</thead>
+						<tbody>
+							<ui:repeat value="#{modelAmis.listeAmis}" var="item"
+								varStatus="status">
+								<tr class="#{(status.index % 2 == 0) ? 'even' : 'odd'}">
+									<td>#{modelAmis.getAmis(item).pseudo}</td>
+									<td>#{modelAmis.getAmis(item).email}</td>
+									<td><h:button
+											outcome="listeDoucmentsPourAmi?id=#{modelAmis.getAmis(item).id}"
+											styleClass="btn btn-primary"
+											value="Voir sa liste des documents" /> <h:commandButton
+											value="Supprimer la demande d'amis"
+											action="#{modelAmis.supprimerAmitie(item.idAmis, modelAmis.afficherPseudoCompte(item.demandeur.id))}"
+											styleClass="btn btn-danger">
+											<f:ajax render="@form" execute="@form" />
+										</h:commandButton></td>
+								</tr>
+							</ui:repeat>
+						</tbody>
+					</table>
+				</h:form>
+			</div>
+
+			<h3>Mes Documents</h3>
+			<div class="table-responsive">
+				<h:form>
+					<table class="table">
+						<thead>
+							<tr>
+								<th>ID</th>
+								<th>Livre</th>
+							</tr>
+						</thead>
+						<tbody>
+							<ui:repeat
+								value="#{modelDocument.getListeDocument2(modelConnexion.compteActif.id)}"
+								var="item" varStatus="status">
+								<tr class="#{(status.index % 2 == 0) ? 'even' : 'odd'}">
+									<td>#{item.idDocument}</td>
+									<td>#{item.sujet}</td>
+								</tr>
+							</ui:repeat>
+						</tbody>
+					</table>
+				</h:form>
+			</div>
+
+			<h3>Mes Demandes d'emprunts</h3>
+			<div class="table-responsive">
+				<h:form>
+					<table class="table">
+						<thead>
+							<tr>
+								<th>Demandeur</th>
+								<th>Document</th>
+								<th>Actions</th>
+							</tr>
+						</thead>
+						<tbody>
+							<ui:repeat value="#{modelEmprunt.listeDemandeEmprunt}" var="item"
+								varStatus="status">
+								<tr class="#{(status.index % 2 == 0) ? 'even' : 'odd'}">
+									<td>#{item.demandeur.pseudo}</td>
+									<td>#{item.document.sujet}</td>
+									<td><h:commandButton value="Accepter demande d'emprunt"
+											action="#{modelEmprunt.accepterAmitie(item.idEmprunt, item.demandeur, item.document)}"
+											styleClass="btn btn-success">
+											<f:ajax render="@form" execute="@form" />
+										</h:commandButton> <h:commandButton value="Refuser demande d'emprunt"
+											action="#{modelEmprunt.refuserAmitie(item.idEmprunt, item.demandeur, item.document)}"
+											styleClass="btn btn-danger">
+											<f:ajax render="@form" execute="@form" />
+										</h:commandButton></td>
+								</tr>
+							</ui:repeat>
+						</tbody>
+					</table>
+				</h:form>
+			</div>
+
+			<h3>Mes Emprunts</h3>
+			<div class="table-responsive">
+				<h:form>
+					<table class="table">
+						<thead>
+							<tr>
+								<th>Demandeur</th>
+								<th>Document</th>
+								<th>Actions</th>
+							</tr>
+						</thead>
+						<tbody>
+							<ui:repeat value="#{modelEmprunt.listeEmprunt}" var="item"
+								varStatus="status">
+								<tr class="#{(status.index % 2 == 0) ? 'even' : 'odd'}">
+									<td>#{item.demandeur.pseudo}</td>
+									<td>#{item.document.sujet}</td>
+									<td><h:button outcome="" styleClass="btn btn-primary"
+											value="Voir document" /> <h:commandButton
+											value="Supprimer la demande d'emprunt"
+											action="#{modelEmprunt.supprimerAmitie(item.idEmprunt)}"
+											styleClass="btn btn-danger">
+											<f:ajax render="@form" execute="@form" />
+										</h:commandButton></td>
+								</tr>
+							</ui:repeat>
+						</tbody>
+					</table>
+				</h:form>
+			</div>
+
+
+		</div>
+	</ui:define>
 </ui:composition>

@@ -1,78 +1,101 @@
 package projet.jsf.data;
 
-import java.io.Serializable;
+
 import java.util.Objects;
 
-@SuppressWarnings("serial")
-public class Amis implements Serializable {
 
-	// Champs
+import projet.ejb.data.Compte;
 
-	private Integer idDemandeur;
-
-	private Integer idReceveur;
+public class Amis {
+    
 	
-	private int idAmis;
+    // Champs
+    
+    private int         	idAmis;
+    
+	private Compte demandeur;
+
+	private Compte receveur;
 	
 	private String status;
-
+	
+	
 	// Constructeurs
 
 	public Amis() {
-	}
-
-	public Amis(Integer idDemandeur, Integer idReceveur, int idAmis, String status) {
 		super();
-		this.idDemandeur = idDemandeur;
-		this.idReceveur = idReceveur;
+	}
+    
+    
+    
+    public Amis(int idAmis, Compte demandeur, Compte receveur, String status) {
+		super();
 		this.idAmis = idAmis;
+		this.demandeur = demandeur;
+		this.receveur = receveur;
 		this.status = status;
 	}
 
+
+
 	// Getters & setters
 
-	public Integer getIdDemandeur() {
-		return idDemandeur;
-	}
-
-	public void setIdDemandeur(Integer idDemandeur) {
-		this.idDemandeur = idDemandeur;
-	}
-
-	public Integer getIdReceveur() {
-		return idReceveur;
-	}
-
-	public void setIdReceveur(Integer idReceveur) {
-		this.idReceveur = idReceveur;
-	}
+	
 
 	public int getIdAmis() {
 		return idAmis;
 	}
 
+
+
 	public void setIdAmis(int idAmis) {
 		this.idAmis = idAmis;
 	}
+
+
+
+	public Compte getDemandeur() {
+		return demandeur;
+	}
+
+
+
+	public void setDemandeur(Compte demandeur) {
+		this.demandeur = demandeur;
+	}
+
+
+
+	public Compte getReceveur() {
+		return receveur;
+	}
+
+
+
+	public void setReceveur(Compte receveur) {
+		this.receveur = receveur;
+	}
+
+
 
 	public String getStatus() {
 		return status;
 	}
 
+
+
 	public void setStatus(String status) {
 		this.status = status;
 	}
 
-	@Override
-	public String toString() {
-		return "Amis [idDemandeur=" + idDemandeur + ", idReceveur=" + idReceveur + ", idAmis=" + idAmis + ", status="
-				+ status + "]";
-	}
+
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(idAmis, idDemandeur, idReceveur, status);
+		return Objects.hash(demandeur, idAmis, receveur, status);
 	}
+
+
 
 	@Override
 	public boolean equals(Object obj) {
@@ -83,10 +106,15 @@ public class Amis implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		Amis other = (Amis) obj;
-		return idAmis == other.idAmis && Objects.equals(idDemandeur, other.idDemandeur)
-				&& Objects.equals(idReceveur, other.idReceveur) && Objects.equals(status, other.status);
+		return Objects.equals(demandeur, other.demandeur) && idAmis == other.idAmis
+				&& Objects.equals(receveur, other.receveur) && Objects.equals(status, other.status);
 	}
 	
 	
-
+	@Override
+	public String toString() {
+		return "Amis [idAmis=" + idAmis + ", demandeur=" + demandeur + ", receveur=" + receveur + ", status=" + status
+				+ "]";
+	}
+	
 }

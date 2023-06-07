@@ -21,7 +21,7 @@ import projet.ejb.data.Compte;
 @Stateless
 @Local
 @TransactionAttribute( MANDATORY )
-public class DaoOrganiser {
+public class DaoAssocier {
 
 	
 	// Champs
@@ -34,7 +34,7 @@ public class DaoOrganiser {
 	//TODO: VOIR AVEC PROF POURQUOI L'INSERSSION NE S'EFFECTUE PAS
 	@TransactionAttribute( MANDATORY )
 	public int inserer(Organiser organisation) {
-	    em.merge(organisation);
+	    em.persist(organisation);
 	    em.flush();
 	    return organisation.getId();
 	}

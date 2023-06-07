@@ -69,7 +69,7 @@ public class ServiceDocument implements IServiceDocument {
 	@TransactionAttribute(NOT_SUPPORTED)
 	public List<DtoDocument> listerToutDocument2(int idCompte) {
 		List<DtoDocument> liste = new ArrayList<>();
-		for (Document Document : daoDocument.listerToutDocument(idCompte)) {
+		for (Document Document : daoDocument.listerToutDocument2(idCompte)) {
 			liste.add(mapper.map(Document));
 		}
 		return liste;

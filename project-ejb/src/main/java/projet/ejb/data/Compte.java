@@ -5,6 +5,7 @@ import static javax.persistence.GenerationType.IDENTITY;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import javax.persistence.CollectionTable;
 import javax.persistence.Column;
@@ -98,15 +99,10 @@ public class Compte  {
 		this.roles = roles;
 	}
 
-    
-	// equals() et hashcode()
 
 	@Override
 	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + id;
-		return result;
+		return Objects.hash(id);
 	}
 
 	@Override
@@ -118,9 +114,18 @@ public class Compte  {
 		if (getClass() != obj.getClass())
 			return false;
 		Compte other = (Compte) obj;
-		if (id != other.id)
-			return false;
-		return true;
+		return id == other.id;
 	}
+
+	@Override
+	public String toString() {
+		return "Compte [id=" + id + ", pseudo=" + pseudo + ", motDePasse=" + motDePasse + ", email=" + email
+				+ ", roles=" + roles + "]";
+	}
+
+    
+	// equals() et hashcode()
+
+
 	
 }

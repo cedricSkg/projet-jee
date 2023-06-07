@@ -47,7 +47,7 @@ public class DaoAmis implements IDaoAmis {
 
 	@Override
 	public void supprimer(int idAmis) {
-		em.remove( retrouver(idAmis) );
+		em.remove( em.getReference( Amis.class, idAmis ) );
 	}
 
 	@Override
@@ -58,9 +58,9 @@ public class DaoAmis implements IDaoAmis {
 
 	@Override
 	@TransactionAttribute( NOT_SUPPORTED )
-	public List<Amis> listerToutAmis(int idCompte) {
+	public List<Amis> listerToutAmis(Compte compte) {
 		em.clear();
-		var jpql = "SELECT a FROM Amis a, Compte c WHERE a.idDemandeur = c.id AND a.status = 'V' AND a.idReceveur =" + idCompte;
+		var jpql = "SELECT a FROM Amis a WHERE a.status = 'V' AND (a.receveur = " + compte.getId() + " OR a.demandeur = " + compte.getId() + ")";
 		var query = em.createQuery( jpql, Amis.class );
 		return query.getResultList();
 		
@@ -69,7 +69,7 @@ public class DaoAmis implements IDaoAmis {
 	@Override
 	public List<Amis> listerToutDemandeAmis(int idCompte) {
 		em.clear();
-		var jpql = "SELECT a FROM Amis a, Compte c WHERE a.idDemandeur = c.id AND a.status = 'E' AND a.idReceveur =" + idCompte;
+		var jpql = "SELECT a FROM Amis a WHERE a.status = 'E' AND a.receveur =" + idCompte;
 		var query = em.createQuery( jpql, Amis.class );
 		return query.getResultList();
 	}
@@ -86,10 +86,8 @@ public class DaoAmis implements IDaoAmis {
 	public Amis getAmitieExistant(int idDemandeur, int idReceveur) {
 		try {
 			em.clear();
-			var jpql = "SELECT a FROM Amis a WHERE a.idDemandeur = :idDemandeur AND a.idReceveur = :idReceveur";
+			var jpql = "SELECT a FROM Amis a WHERE a.demandeur = " + idDemandeur + " AND a.receveur = " + idReceveur;
 			var query = em.createQuery( jpql, Amis.class );
-			query.setParameter( "idDemandeur", idDemandeur ) ;
-			query.setParameter( "idReceveur", idReceveur ) ;
 			return query.getSingleResult();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block

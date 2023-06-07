@@ -14,7 +14,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table( name = "organiser" )
-public class Organisation {
+public class Organiser {
     
 	
     // Champs
@@ -33,11 +33,11 @@ public class Organisation {
 	
 	// Constructeurs
 
-	public Organisation() {
+	public Organiser() {
 		super();
 	}
 
-	public Organisation(Categorie categorie, Document document) {
+	public Organiser(Categorie categorie, Document document) {
 		super();
 		this.categorie = categorie;
 		this.document = document;
@@ -82,7 +82,7 @@ public class Organisation {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Organisation other = (Organisation) obj;
+		Organiser other = (Organiser) obj;
 		return Objects.equals(categorie, other.categorie) && document == other.document;
 	}
 

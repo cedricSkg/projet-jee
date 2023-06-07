@@ -1,0 +1,49 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="/template/page-standard.xhtml">
+
+	<f:metadata>
+		<f:viewParam name="id" value="#{modelCompte.courant.id}" />
+		<f:viewAction action="#{modelCompte.actualiserCourant()}" />
+	</f:metadata>
+
+	<ui:define name="titre">Liste des documents de #{modelCompte.courant.pseudo}</ui:define>
+
+	<ui:define name="contenu">
+		<div class="container">
+			<h:form>
+				<div class="table-responsive">
+					<table class="table table-striped">
+						<thead>
+							<tr>
+								<th>Libellé</th>
+								<th>Actions</th>
+							</tr>
+						</thead>
+						<tbody>
+							<ui:repeat value="#{modelDocument.getListeDocument2(modelCompte.courant.id)}" var="item">
+								<tr>
+									<td>#{item.sujet}</td>
+									<td>
+										<h:commandButton value="Demander emprunt"
+											action="#{modelEmprunt.demanderEmprunt(modelCompte.courant, item)}"
+											styleClass="btn btn-primary" title="Demander un emprunt">
+											<f:ajax render="@form" execute="@form" />
+										</h:commandButton>
+									</td>
+								</tr>
+							</ui:repeat>
+						</tbody>
+					</table>
+				</div>
+			</h:form>
+		</div>
+	</ui:define>
+
+	<f:metadata>
+		<f:viewAction action="#{utilJsf.messageFromRequestAttribute()}" />
+	</f:metadata>
+</ui:composition>

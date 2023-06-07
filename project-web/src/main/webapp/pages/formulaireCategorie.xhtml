@@ -3,9 +3,16 @@
 	xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:ui="http://java.sun.com/jsf/facelets">>
+	xmlns:ui="http://java.sun.com/jsf/facelets">
 
-	 <f:metadata>
+	<link rel="stylesheet"
+		href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" />
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script
+		src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+	<f:metadata>
 		<f:viewParam name="id" value="#{modelCategorie.courant.idCategorie}" />
 		<f:viewAction action="#{modelCategorie.actualiserCourant()}" />
 	</f:metadata>
@@ -13,30 +20,25 @@
 	<ui:define name="titre">Categorie: #{modelCategorie.courant.libelle}</ui:define>
 
 	<ui:define name="contenu">
-
 		<h:form>
+			<div class="form-group">
+				<label for="id">Id :</label>
+				<h:inputText id="id" size="5" readonly="true" class="form-control"
+					value="#{modelCategorie.courant.idCategorie}" />
+				<h:message for="id" errorClass="error" />
+			</div>
 
-			<table class="form">
-				<tr>
-					<td><h:outputLabel for="id">Id :</h:outputLabel></td>
-					<td><h:inputText id="id" size="5" readonly="true"
-							value="#{modelCategorie.courant.idCategorie}" /> <br />
-					<h:message for="id" errorClass="error" /></td>
-				</tr>
-				<tr>
-					<td><h:outputLabel for="libelle">Libellé :</h:outputLabel></td>
-					<td><h:inputText id="libelle" size="25"
-							value="#{modelCategorie.courant.libelle}" /> <br />
-					<h:message for="libelle" errorClass="error" /></td>
-				</tr>
-			</table>
+			<div class="form-group">
+				<label for="libelle">Libellé :</label>
+				<h:inputText id="libelle" size="25" class="form-control"
+					value="#{modelCategorie.courant.libelle}" />
+				<h:message for="libelle" errorClass="error" />
+			</div>
 
 			<br />
-			<h:commandButton value="Valider"
+			<h:commandButton value="Valider" class="btn btn-primary"
 				action="#{modelCategorie.validerMiseAJour()}" />
-			<h:button value="Retour" outcome="catégories" />
+			<h:button value="Retour" outcome="catégories" class="btn btn-default" />
 		</h:form>
-
 	</ui:define>
-
 </ui:composition>

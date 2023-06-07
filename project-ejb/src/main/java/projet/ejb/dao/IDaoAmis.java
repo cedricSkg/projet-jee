@@ -21,7 +21,7 @@ public interface IDaoAmis {
 
 	List<Amis> listerToutDemandeAmis(int idCompte);
 
-	List<Amis> listerToutAmis(int idCompte);
-
 	Amis getAmitieExistant(int idDemandeur, int idReceveur);
+
+	List<Amis> listerToutAmis(Compte compte);
 }

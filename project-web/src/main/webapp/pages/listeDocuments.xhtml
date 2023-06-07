@@ -4,6 +4,7 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	template="/template/page-standard.xhtml">
+
 	<f:metadata>
 		<f:viewParam name="id" value="#{modelCategorie.courant.idCategorie}" />
 		<f:viewAction action="#{modelCategorie.actualiserCourant()}" />
@@ -13,43 +14,35 @@
 	<ui:define name="contenu">
 
 		<h:form>
-
-			<h:dataTable styleClass="liste"
-				value="#{modelDocument.getListeDocumentsParCategorie(modelCategorie.courant.idCategorie)}"
-				var="item" rowClasses="impair, pair"
-				columnClasses="left,left,center">
-				<h:column>
-					<f:facet name="header">
-						<h:outputText value="Libellé" />
-					</f:facet>
-					<b>#{item.sujet}</b>
-				</h:column>
-				<h:column>
-					<f:facet name="header">
-						<h:outputText value="Url" />
-					</f:facet>
-					<b>#{item.url}</b>
-				</h:column>
-				<h:column>
-					<f:facet name="header">
-						<h:outputText value="Actions" />
-					</f:facet>
-					<h:button outcome="formulaireDocument?id=#{item.idDocument}"
-						image="#{ resource['images:modifier.png'] }" title="Modifier"
-						styleClass="image-action" />
-					<h:commandButton action="#{modelDocument.supprimer(item)}"
-						value="Supprimer"
-						onclick="return confirm('Confirmez-vous la suppression ?')"
-						image="#{ resource['images:supprimer.png'] }" title="Supprimer"
-						styleClass="image-action">
-						<f:ajax render="@form" execute="@form" />
-					</h:commandButton>
-				</h:column>
-
-			</h:dataTable>
-
+			<table class="table">
+				<thead>
+					<tr>
+						<th>Libellé</th>
+						<th>Url</th>
+						<th>Actions</th>
+					</tr>
+				</thead>
+				<tbody>
+					<ui:repeat
+						value="#{modelDocument.getListeDocumentsParCategorie(modelCategorie.courant.idCategorie)}"
+						var="item">
+						<tr>
+							<td><b>#{item.sujet}</b></td>
+							<td><b>#{item.url}</b></td>
+							<td><h:button
+									outcome="formulaireDocument?id=#{item.idDocument}&amp;idC=#{modelCategorie.courant.idCategorie}"
+									title="Modifier" styleClass="btn btn-primary btn-sm"
+									value="Modifier" /> <h:commandButton
+									action="#{modelDocument.supprimer(item)}" value="Supprimer"
+									onclick="return confirm('Confirmez-vous la suppression ?')"
+									title="Supprimer" styleClass="btn btn-primary btn-sm">
+									<f:ajax render="@form" execute="@form" />
+								</h:commandButton></td>
+						</tr>
+					</ui:repeat>
+				</tbody>
+			</table>
 			<br />
-
 		</h:form>
 
 	</ui:define>

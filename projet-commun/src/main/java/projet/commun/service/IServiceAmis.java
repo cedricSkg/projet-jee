@@ -3,8 +3,8 @@ package projet.commun.service;
 import java.util.List;
 
 
+
 import projet.commun.dto.DtoAmis;
-import projet.commun.dto.DtoCategorie;
 import projet.commun.dto.DtoCompte;
 import projet.commun.exception.ExceptionValidation;
 
@@ -23,8 +23,8 @@ public interface IServiceAmis {
 
 	List<DtoAmis> listerToutDemandeAmis(int idCompte);
 
-	List<DtoAmis> listerToutAmis(int idCompte);
-
 	DtoAmis getAmitieExistant(int idDemandeur, int idReceveur);
+
+	List<DtoAmis> listerToutAmis(DtoCompte compte);
 
 }

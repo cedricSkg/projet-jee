@@ -64,11 +64,11 @@ public class ModelCategorie implements Serializable {
 			DtoCategorie dto = serviceCategorie.retrouver( courant.getIdCategorie() ); 
 			if ( dto == null ) {
 				UtilJsf.messageError( "Le compte demandé n'existe pas" );
-				return "test/liste";
 			} else {
 				courant = mapper.map( dto );
 			}
 		}
+		System.out.println(courant);
 		return null;
 	}
 	

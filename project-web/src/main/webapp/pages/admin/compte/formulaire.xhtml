@@ -3,81 +3,62 @@
      xmlns="http://www.w3.org/1999/xhtml"
      xmlns:h="http://java.sun.com/jsf/html"
      xmlns:f="http://java.sun.com/jsf/core"
-     xmlns:ui="http://java.sun.com/jsf/facelets">>
+     xmlns:ui="http://java.sun.com/jsf/facelets">
 
-	 <f:metadata>
-		 <f:viewParam name="id" value="#{modelCompte.courant.id}" />
-		 <f:viewAction action="#{modelCompte.actualiserCourant()}" />
-	 </f:metadata>
+	<f:metadata>
+		<f:viewParam name="id" value="#{modelCompte.courant.id}" />
+		<f:viewAction action="#{modelCompte.actualiserCourant()}" />
+	</f:metadata>
 
-    <ui:define name="titre">Compte</ui:define>
+	<ui:define name="titre">Compte</ui:define>
 
-    <ui:define name="contenu">
-
-	<h:form>
-	
-		<table class="form">
-			<tr>
-				<td>
-					<h:outputLabel for="id">Id :</h:outputLabel>				
-				</td>
-				<td>
-					<h:inputText id="id" size="5" readonly="true"
-						value="#{modelCompte.courant.id}" />
-					<br /><h:message for="id" errorClass="error"/>
-				</td>
-			</tr>
-			<tr>
-				<td>
-					<h:outputLabel for="pseudo">Pseudo :</h:outputLabel>				
-				</td>
-				<td>
-					<h:inputText id="pseudo" size="25" 
-						value="#{modelCompte.courant.pseudo}" />
-					<br /><h:message for="pseudo" errorClass="error"/>
-				</td>
-			</tr>
-			<tr>
-				<td>
-					<h:outputLabel for="motDePasse">Mot de passe :</h:outputLabel>				
-				</td>
-				<td>
-					<h:inputText id="motDePasse" size="25" 
-						value="#{modelCompte.courant.motDePasse}" />
-					<br /><h:message for="motDePasse" errorClass="error"/>
-				</td>
-			</tr>
-			<tr>
-				<td>
-					<h:outputLabel for="email">Email :</h:outputLabel>				
-				</td>
-				<td>
-					<h:inputText id="email" size="50" 
-						value="#{modelCompte.courant.email}" />
-					<br /><h:message for="email" errorClass="error"/>
-				</td>
-			</tr>
-			<tr>
-				<td>
-					<h:outputLabel for="roles">Roles :</h:outputLabel>				
-				</td>
-				<td>
-					<h:selectManyCheckbox id="roles" layout="pageDirection" 
-						value="#{modelCompte.courant.roles}">
-						<f:selectItems value="#{utilAppli.roles}" var="role" 
-							itemLabel="#{utilAppli.getLibelléDeRole(role)}"  />
-					</h:selectManyCheckbox>
-					<h:message for="roles" errorClass="error"/>
-				</td>
-			</tr>
-		</table>
-
-		<br /> 
-		<h:commandButton value="Valider" 
-			action="#{modelCompte.validerMiseAJour()}" />
-		<h:button value="Retour" outcome="comptes" />
-	</h:form>
-
+	<ui:define name="contenu">
+		<div class="container">
+			<h:form>
+				<div class="form-group row">
+					<label for="id" class="col-sm-2 col-form-label">Id :</label>
+					<div class="col-sm-10">
+						<h:inputText id="id" size="5" readonly="true" value="#{modelCompte.courant.id}" class="form-control" />
+						<h:message for="id" errorClass="error" />
+					</div>
+				</div>
+				<div class="form-group row">
+					<label for="pseudo" class="col-sm-2 col-form-label">Pseudo :</label>
+					<div class="col-sm-10">
+						<h:inputText id="pseudo" size="25" value="#{modelCompte.courant.pseudo}" class="form-control" />
+						<h:message for="pseudo" errorClass="error" />
+					</div>
+					</div>
+				<div class="form-group row">
+					<label for="motDePasse" class="col-sm-2 col-form-label">Mot de passe :</label>
+					<div class="col-sm-10">
+						<h:inputText id="motDePasse" size="25" value="#{modelCompte.courant.motDePasse}" class="form-control" />
+						<h:message for="motDePasse" errorClass="error" />
+					</div>
+				</div>
+				<div class="form-group row">
+					<label for="email" class="col-sm-2 col-form-label">Email :</label>
+					<div class="col-sm-10">
+						<h:inputText id="email" size="50" value="#{modelCompte.courant.email}" class="form-control" />
+						<h:message for="email" errorClass="error" />
+					</div>
+				</div>
+				<div class="form-group row">
+					<label for="roles" class="col-sm-2 col-form-label">Roles :</label>
+					<div class="col-sm-10">
+						<h:selectManyCheckbox id="roles" layout="pageDirection" value="#{modelCompte.courant.roles}" class="form-control sup">
+							<f:selectItems value="#{utilAppli.roles}" var="role" itemLabel="#{utilAppli.getLibelléDeRole(role)}" />
+						</h:selectManyCheckbox>
+						<h:message for="roles" errorClass="error" />
+					</div>
+				</div>
+				<div class="form-group row">
+					<div class="col-sm-10 offset-sm-2">
+						<h:commandButton value="Valider" action="#{modelCompte.validerMiseAJour()}" class="btn btn-primary" />
+						<h:button value="Retour" outcome="comptes" class="btn btn-secondary" />
+					</div>
+				</div>
+			</h:form>
+		</div>
 	</ui:define>
-
 </ui:composition>

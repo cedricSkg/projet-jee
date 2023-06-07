@@ -38,13 +38,16 @@ public class ModelAmis implements Serializable {
 
 	@Inject
 	private IMapperAmis mapper;
+	
+	@Inject
+	private IMapperCompte mapperC;
 
 	// Getters
 
 	public List<Amis> getListeAmis() {
 		if (listeAmis == null) {
 			listeAmis = new ArrayList<>();
-			for (DtoAmis dto : serviceAmis.listerToutAmis(modelConnexion.getCompteActif().getId())) {
+			for (DtoAmis dto : serviceAmis.listerToutAmis(mapperC.map(modelConnexion.getCompteActif()))) {
 				listeAmis.add(mapper.map(dto));
 			}
 		}
@@ -66,12 +69,11 @@ public class ModelAmis implements Serializable {
 			DtoAmis dto;
 			Amis courant = mapper.map( this.getAmitieExistant(modelConnexion.getCompteActif().getId(), item.getId()) ) ;
 			if (courant instanceof Amis) {
-				dto = new DtoAmis(courant.getIdAmis(), modelConnexion.getCompteActif().getId(), item.getId(), "E");
+				dto = new DtoAmis(courant.getIdAmis(), mapperC.map(modelConnexion.getCompteActif()), mapperC.map(item), "E");
 			} else {
-				dto = new DtoAmis(modelConnexion.getCompteActif().getId(), item.getId(), "E");
+				dto = new DtoAmis(mapperC.map(modelConnexion.getCompteActif()), mapperC.map(item), "E");
 			}
 			serviceAmis.inserer(dto);
-			System.out.println(dto);
 			UtilJsf.messageInfo("Mise à jour effectuée avec succès.");
 			return null;
 		} catch (ExceptionValidation e) {
@@ -82,7 +84,7 @@ public class ModelAmis implements Serializable {
 
 	public String accepterAmitie(int idAmis, DtoCompte item) {
 		try {
-			DtoAmis dto = new DtoAmis(idAmis, item.getId(), modelConnexion.getCompteActif().getId(), "V");
+			DtoAmis dto = new DtoAmis(idAmis, item, mapperC.map(modelConnexion.getCompteActif()), "V");
 			serviceAmis.inserer(dto);
 			UtilJsf.messageInfo("Demande d'amis de " + item.getPseudo() + " acceptée!");
 			return null;
@@ -95,7 +97,7 @@ public class ModelAmis implements Serializable {
 	public String refuserAmitie(int idAmis, DtoCompte item) {
 		if (serviceAmis.retrouver(idAmis).getStatus().compareTo("E") == 0) {
 			try {
-				DtoAmis dto = new DtoAmis(idAmis, item.getId(), modelConnexion.getCompteActif().getId(), "R");
+				DtoAmis dto = new DtoAmis(idAmis, item, mapperC.map(modelConnexion.getCompteActif()), "R");
 				serviceAmis.inserer(dto);
 				UtilJsf.messageInfo("Demande d'amis de " + item.getPseudo() + " refusée!");
 
@@ -129,7 +131,15 @@ public class ModelAmis implements Serializable {
 	public DtoAmis getAmitieExistant(int idDemandeur, int idReceveur) {
 		return serviceAmis.getAmitieExistant(idDemandeur, idReceveur);
 	}
-
-//TODO: SUPPRIMER AMITIE
+	
+	public Compte getAmis(Amis amis) {
+		Compte compte = null;
+		if (modelConnexion.getCompteActif().getId() == amis.getReceveur().getId()) {
+			compte = mapperC.map(amis.getDemandeur());
+		}else {
+			compte = mapperC.map(amis.getReceveur());
+		}
+		return compte;
+	}
 
 }

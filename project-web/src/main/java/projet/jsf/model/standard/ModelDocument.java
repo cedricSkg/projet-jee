@@ -30,7 +30,9 @@ public class ModelDocument implements Serializable {
 	private ModelConnexion modelConnexion;
 	
 	@Inject
-	private ModelCategorie modelCategorie;
+	private ModelEmprunt modelEmprunt;
+	
+
 
 	private Document courant;
 
@@ -52,12 +54,13 @@ public class ModelDocument implements Serializable {
 		return listeDocument;
 	}
 	
-	public List<Document> getListeDocument2() {
+	public List<Document> getListeDocument2(int idCompte) {
 		if (listeDocument == null) {
 			listeDocument = new ArrayList<>();
-			for (DtoDocument dto : serviceDocument.listerToutDocument2(modelConnexion.getCompteActif().getId())) {
+			for (DtoDocument dto : serviceDocument.listerToutDocument2(idCompte)) {
 				listeDocument.add(mapper.map(dto));
 			}
+			listeDocument.addAll(modelEmprunt.getListeDocumentEmprunt(idCompte));
 		}
 		return listeDocument;
 	}

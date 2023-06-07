@@ -18,7 +18,7 @@
     NAME="output3" PATH="/pages/user/profil/profil.xhtml"
     TARGET="rules:#pages#user#profil#profil.xhtml" TITLE="profil" model-entity="JSFProcessItemOutput"/>
    <PROCESS-ITEM-OUTPUT ID="demandesAmis::#pages#user#amis#liste.xhtml"
-    NAME="output5" PATH="/pages/user/amis/liste.xhtml"
+    NAME="output6" PATH="/pages/user/amis/liste.xhtml"
     TARGET="rules:#pages#user#amis#liste.xhtml" TITLE="demandesAmis" model-entity="JSFProcessItemOutput"/>
   </PROCESS-ITEM>
  </PROCESS-ITEM>
