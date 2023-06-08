@@ -3,19 +3,16 @@ package projet.ejb.dao.jpa;
 import static javax.ejb.TransactionAttributeType.MANDATORY;
 
 
-import static javax.ejb.TransactionAttributeType.NOT_SUPPORTED;
 
-import java.util.List;
+import static javax.ejb.TransactionAttributeType.NOT_SUPPORTED;
 
 import javax.ejb.Local;
 import javax.ejb.Stateless;
 import javax.ejb.TransactionAttribute;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
 
 import projet.ejb.data.Organiser;
-import projet.ejb.data.Compte;
 
 
 @Stateless
@@ -50,6 +47,18 @@ public class DaoAssocier {
 	@TransactionAttribute( NOT_SUPPORTED )
 	public Organiser retrouver(int idOrganisation) {
 		return em.find( Organiser.class, idOrganisation );
+	}
+	
+	
+	public String supprimerToutAssocier(int idCompte) {
+		var jpql = "SELECT a.idassocier FROM Associer a WHERE a.compte=:id";
+	    var query = em.createQuery( jpql, Integer.class );
+	    query.setParameter( "id", idCompte );
+        var listIdAssocier = query.getResultList();
+        for (Integer idAssocier : listIdAssocier) {
+			supprimer(idAssocier);
+		}
+        return null;
 	}
 
 }

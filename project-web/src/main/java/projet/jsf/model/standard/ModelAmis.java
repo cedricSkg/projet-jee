@@ -87,10 +87,10 @@ public class ModelAmis implements Serializable {
 			DtoAmis dto = new DtoAmis(idAmis, item, mapperC.map(modelConnexion.getCompteActif()), "V");
 			serviceAmis.inserer(dto);
 			UtilJsf.messageInfo("Demande d'amis de " + item.getPseudo() + " acceptée!");
-			return null;
+			return "profil";
 		} catch (ExceptionValidation e) {
 			UtilJsf.messageError(e);
-			return null;
+			return "profil";
 		}
 	}
 
@@ -103,10 +103,10 @@ public class ModelAmis implements Serializable {
 
 			} catch (ExceptionValidation e) {
 				UtilJsf.messageError(e);
-				return null;
+				return "profil";
 			}
 		}
-		return null;
+		return "profil";
 	}
 
 	public DtoCompte afficherPseudoCompte(int idCompte) {
@@ -122,10 +122,10 @@ public class ModelAmis implements Serializable {
 
 			} catch (ExceptionValidation e) {
 				UtilJsf.messageError(e);
-				return null;
+				return "profil";
 			}
 		}
-		return null;
+		return "profil";
 	}
 
 	public DtoAmis getAmitieExistant(int idDemandeur, int idReceveur) {

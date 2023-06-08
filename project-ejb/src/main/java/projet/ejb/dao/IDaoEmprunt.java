@@ -26,4 +26,7 @@ public interface IDaoEmprunt {
 	List<Emprunt> listerToutEmprunt(Compte compte);
 
 	List<Document> listerToutDocumentEmprunt(int idCompte);
+
+
+	String supprimerToutEmpruntUnCompte(int idCompte);
 }

@@ -3,19 +3,17 @@ package projet.ejb.dao.jpa;
 import static javax.ejb.TransactionAttributeType.MANDATORY;
 
 
+
 import static javax.ejb.TransactionAttributeType.NOT_SUPPORTED;
 
-import java.util.List;
 
 import javax.ejb.Local;
 import javax.ejb.Stateless;
 import javax.ejb.TransactionAttribute;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
 
 import projet.ejb.data.Organiser;
-import projet.ejb.data.Compte;
 
 
 @Stateless

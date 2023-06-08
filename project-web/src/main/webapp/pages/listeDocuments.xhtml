@@ -32,7 +32,7 @@
 							<td><h:button
 									outcome="formulaireDocument?id=#{item.idDocument}&amp;idC=#{modelCategorie.courant.idCategorie}"
 									title="Modifier" styleClass="btn btn-primary btn-sm"
-									value="Modifier" /> <h:commandButton
+									value="Modifier" /> <a href="#{ resource['pdf:document.pdf'] }" target="_blank" class="btn btn-primary btn-sm">Voir</a><h:commandButton
 									action="#{modelDocument.supprimer(item)}" value="Supprimer"
 									onclick="return confirm('Confirmez-vous la suppression ?')"
 									title="Supprimer" styleClass="btn btn-primary btn-sm">

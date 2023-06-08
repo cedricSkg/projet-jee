@@ -1,8 +1,10 @@
 package projet.commun.dto;
 
 import java.io.Serializable;
+
 import java.util.ArrayList;
 import java.util.List;
+
 
 
 @SuppressWarnings("serial")
@@ -20,7 +22,9 @@ public class DtoCompte implements Serializable  {
 	private String		email;
 	
 	private List<String> roles = new ArrayList<>();
+	private List<DtoCompte> demandesAmis = new ArrayList<>();	
 	
+	private List<DtoCompte> amis = new ArrayList<>();	
 	
 	// Constructeurs
 	
@@ -89,4 +93,21 @@ public class DtoCompte implements Serializable  {
 		}
 		return false;
 	}
+
+	public List<DtoCompte> getDemandesAmis() {
+		return demandesAmis;
+	}
+
+	public void setDemandesAmis(List<DtoCompte> demandesAmis) {
+		this.demandesAmis = demandesAmis;
+	}
+
+	public List<DtoCompte> getAmis() {
+		return amis;
+	}
+
+	public void setAmis(List<DtoCompte> amis) {
+		this.amis = amis;
+	}
+	
 }

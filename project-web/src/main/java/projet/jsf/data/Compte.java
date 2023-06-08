@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-import javax.persistence.OneToMany;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
@@ -35,7 +34,6 @@ public class Compte implements Serializable  {
 	
 	private List<Compte> demandesAmis = new ArrayList<>();	
 	
-	@OneToMany
 	private List<Compte> amis = new ArrayList<>();	
 
 	

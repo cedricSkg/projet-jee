@@ -2,6 +2,7 @@ package projet.ejb.service.standard;
 
 import static javax.ejb.TransactionAttributeType.NOT_SUPPORTED;
 
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,12 +12,10 @@ import javax.ejb.TransactionAttribute;
 import javax.inject.Inject;
 
 import projet.commun.dto.DtoDocument;
-import projet.commun.dto.DtoCompte;
 import projet.commun.exception.ExceptionValidation;
 import projet.commun.service.IServiceDocument;
 import projet.ejb.dao.IDaoDocument;
 import projet.ejb.data.Document;
-import projet.ejb.data.Compte;
 import projet.ejb.data.mapper.IMapperEjb;
 
 @Stateless

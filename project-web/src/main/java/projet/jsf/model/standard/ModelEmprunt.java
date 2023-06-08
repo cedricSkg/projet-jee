@@ -64,9 +64,12 @@ public class ModelEmprunt implements Serializable {
 		if (listeDemandeEmprunt == null) {
 			listeDemandeEmprunt = new ArrayList<>();
 			for (DtoEmprunt dto : serviceEmprunt.listerToutDemandeEmprunt(modelConnexion.getCompteActif().getId())) {
+				System.out.println("model "+ mapper.map(dto));
 				listeDemandeEmprunt.add(mapper.map(dto));
+				
 			}
 		}
+
 		return listeDemandeEmprunt;
 	}
 	
@@ -81,8 +84,8 @@ public class ModelEmprunt implements Serializable {
 	public String demanderEmprunt(Compte item, Document doc) {
 		try {
 			DtoEmprunt dto;
-			Emprunt courant = mapper.map( this.getEmpruntExistant(modelConnexion.getCompteActif().getId(), item.getId()) ) ;
-			if (courant instanceof Emprunt) {
+			DtoEmprunt courant = this.getEmpruntExistant(modelConnexion.getCompteActif().getId(), item.getId())  ;
+			if (courant instanceof DtoEmprunt) {
 				dto = new DtoEmprunt(courant.getIdEmprunt(), mapperC.map(modelConnexion.getCompteActif()), mapperC.map(item), mapperD.map(doc), "E");
 			} else {
 				dto = new DtoEmprunt(mapperC.map(modelConnexion.getCompteActif()), mapperC.map(item), mapperD.map(doc), "E");
@@ -96,19 +99,19 @@ public class ModelEmprunt implements Serializable {
 		}
 	}
 
-	public String accepterAmitie(int idEmprunt, Compte item, Document doc) {
+	public String accepterEmprunt(int idEmprunt, Compte item, Document doc) {
 		try {
 			DtoEmprunt dto = new DtoEmprunt(idEmprunt, mapperC.map(item), mapperC.map(modelConnexion.getCompteActif()), mapperD.map(doc), "V");
 			serviceEmprunt.inserer(dto);
 			UtilJsf.messageInfo("Demande d'emprunt de document de " + item.getPseudo() + " acceptée!");
-			return null;
+			return "profil";
 		} catch (ExceptionValidation e) {
 			UtilJsf.messageError(e);
-			return null;
+			return "profil";
 		}
 	}
 
-	public String refuserAmitie(int idEmprunt, Compte item, Document doc) {
+	public String refuserEmprunt(int idEmprunt, Compte item, Document doc) {
 		if (serviceEmprunt.retrouver(idEmprunt).getStatus().compareTo("E") == 0) {
 			try {
 				DtoEmprunt dto = new DtoEmprunt(idEmprunt, mapperC.map(item), mapperC.map(modelConnexion.getCompteActif()), mapperD.map(doc), "R");
@@ -117,10 +120,10 @@ public class ModelEmprunt implements Serializable {
 
 			} catch (ExceptionValidation e) {
 				UtilJsf.messageError(e);
-				return null;
+				return "profil";
 			}
 		}
-		return null;
+		return "profil";
 	}
 
 	public String supprimerAmitie(int idEmprunt) {

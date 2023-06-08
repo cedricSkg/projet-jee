@@ -2,6 +2,8 @@ package projet.jsf.data;
 
 import java.io.Serializable;
 import java.util.Objects;
+import projet.ejb.data.Intervenant;
+
 
 @SuppressWarnings("serial")
 public class Document implements Serializable {
@@ -13,19 +15,28 @@ public class Document implements Serializable {
 	private String sujet;
 
 	private String url;
-
+	
+	private Intervenant auteur;
+	
+	private Intervenant editeur;
+	
 	// Constructeurs
 
 	public Document() {
-	}
-
-	public Document(Integer idDocument, String sujet, String url) {
 		super();
-		this.idDocument = idDocument;
+	}
+    
+	
+    
+    public Document(int id_document, String sujet, String url, Intervenant auteur, Intervenant editeur) {
+		super();
+		this.idDocument = id_document;
 		this.sujet = sujet;
 		this.url = url;
+		this.auteur = auteur;
+		this.editeur = editeur;
 	}
-
+   
 	// Getters & setters
 
 	public Integer getIdDocument() {
@@ -52,11 +63,30 @@ public class Document implements Serializable {
 		this.url = url;
 	}
 
-	// hascode & equals
+	public Intervenant getAuteur() {
+		return auteur;
+	}
+
+	public void setAuteur(Intervenant auteur) {
+		this.auteur = auteur;
+	}
+
+	public Intervenant getEditeur() {
+		return editeur;
+	}
+
+	public void setEditeur(Intervenant editeur) {
+		this.editeur = editeur;
+	}
+
+
+
 	@Override
 	public int hashCode() {
-		return Objects.hash(idDocument, sujet, url);
+		return Objects.hash(auteur, editeur, idDocument, sujet, url);
 	}
+
+
 
 	@Override
 	public boolean equals(Object obj) {
@@ -67,14 +97,21 @@ public class Document implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		Document other = (Document) obj;
-		return Objects.equals(idDocument, other.idDocument) && Objects.equals(sujet, other.sujet)
+		return Objects.equals(auteur, other.auteur)
+				&& Objects.equals(editeur, other.editeur) && Objects.equals(idDocument, other.idDocument)
+				 && Objects.equals(sujet, other.sujet)
 				&& Objects.equals(url, other.url);
 	}
 
-// tostring
+
+
 	@Override
 	public String toString() {
-		return "Document [idDocument=" + idDocument + ", sujet=" + sujet + ", url=" + url + "]";
+		return "Document [idDocument=" + idDocument + ", sujet=" + sujet + ", url=" + url + ", auteur=" + auteur
+				+ ", editeur=" + editeur + "]";
 	}
+
+// tostring
+
 
 }

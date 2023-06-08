@@ -16,6 +16,7 @@ import javax.persistence.PersistenceContext;
 import projet.ejb.dao.IDaoAmis;
 import projet.ejb.data.Amis;
 import projet.ejb.data.Compte;
+import projet.ejb.data.Emprunt;
 
 
 @Stateless
@@ -46,6 +47,7 @@ public class DaoAmis implements IDaoAmis {
 	}
 
 	@Override
+	@TransactionAttribute( MANDATORY)
 	public void supprimer(int idAmis) {
 		em.remove( em.getReference( Amis.class, idAmis ) );
 	}
@@ -62,6 +64,7 @@ public class DaoAmis implements IDaoAmis {
 		em.clear();
 		var jpql = "SELECT a FROM Amis a WHERE a.status = 'V' AND (a.receveur = " + compte.getId() + " OR a.demandeur = " + compte.getId() + ")";
 		var query = em.createQuery( jpql, Amis.class );
+		System.out.println(query.getResultList());
 		return query.getResultList();
 		
 	}
@@ -88,12 +91,18 @@ public class DaoAmis implements IDaoAmis {
 			em.clear();
 			var jpql = "SELECT a FROM Amis a WHERE a.demandeur = " + idDemandeur + " AND a.receveur = " + idReceveur;
 			var query = em.createQuery( jpql, Amis.class );
-			return query.getSingleResult();
+			var ami = query.getSingleResult();
+			return (ami != null) ? ami : null;
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
 			return null;
 		}
+	}
+	
+	@Override
+	public String supprimerToutAmitierUnCompte(int idCompte) {
+		var query = em.createQuery("DELETE FROM Amis a WHERE a.demandeur =" +idCompte+" OR a.receveur =" +idCompte);
+        query.executeUpdate();
+        return null;
 	}
 
 }

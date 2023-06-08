@@ -94,7 +94,7 @@
 											outcome="listeDoucmentsPourAmi?id=#{modelAmis.getAmis(item).id}"
 											styleClass="btn btn-primary"
 											value="Voir sa liste des documents" /> <h:commandButton
-											value="Supprimer la demande d'amis"
+											value="Supprimer l'amitier"
 											action="#{modelAmis.supprimerAmitie(item.idAmis, modelAmis.afficherPseudoCompte(item.demandeur.id))}"
 											styleClass="btn btn-danger">
 											<f:ajax render="@form" execute="@form" />
@@ -114,6 +114,7 @@
 							<tr>
 								<th>ID</th>
 								<th>Livre</th>
+								<th>Actions</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -123,6 +124,9 @@
 								<tr class="#{(status.index % 2 == 0) ? 'even' : 'odd'}">
 									<td>#{item.idDocument}</td>
 									<td>#{item.sujet}</td>
+									<td>#{item.auteur.nom}</td>
+									<td>#{item.editeur.nom}</td>
+									<td><a href="#{ resource['pdf:document.pdf'] }" target="_blank" class="btn btn-primary btn-sm">Voir</a></td>
 								</tr>
 							</ui:repeat>
 						</tbody>
@@ -148,11 +152,11 @@
 									<td>#{item.demandeur.pseudo}</td>
 									<td>#{item.document.sujet}</td>
 									<td><h:commandButton value="Accepter demande d'emprunt"
-											action="#{modelEmprunt.accepterAmitie(item.idEmprunt, item.demandeur, item.document)}"
+											action="#{modelEmprunt.accepterEmprunt(item.idEmprunt, item.demandeur, item.document)}"
 											styleClass="btn btn-success">
 											<f:ajax render="@form" execute="@form" />
 										</h:commandButton> <h:commandButton value="Refuser demande d'emprunt"
-											action="#{modelEmprunt.refuserAmitie(item.idEmprunt, item.demandeur, item.document)}"
+											action="#{modelEmprunt.refuserEmprunt(item.idEmprunt, item.demandeur, item.document)}"
 											styleClass="btn btn-danger">
 											<f:ajax render="@form" execute="@form" />
 										</h:commandButton></td>
@@ -180,9 +184,7 @@
 								<tr class="#{(status.index % 2 == 0) ? 'even' : 'odd'}">
 									<td>#{item.demandeur.pseudo}</td>
 									<td>#{item.document.sujet}</td>
-									<td><h:button outcome="" styleClass="btn btn-primary"
-											value="Voir document" /> <h:commandButton
-											value="Supprimer la demande d'emprunt"
+									<td><h:commandButton value="Supprimer l'emprunt"
 											action="#{modelEmprunt.supprimerAmitie(item.idEmprunt)}"
 											styleClass="btn btn-danger">
 											<f:ajax render="@form" execute="@form" />

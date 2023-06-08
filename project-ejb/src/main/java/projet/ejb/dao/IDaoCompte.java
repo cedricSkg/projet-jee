@@ -21,4 +21,5 @@ public interface IDaoCompte {
 
 	boolean 	verifierUnicitePseudo( String pseudo, int idCompte );
 
+
 }

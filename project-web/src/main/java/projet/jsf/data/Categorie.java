@@ -20,7 +20,7 @@ public class Categorie implements Serializable {
 	@Size(max=25, message = "Valeur trop longue pour le libellé : 25 car. maxi" )
     private String      	libelle;
 	
-	private List<Document> listeLivre;
+	private List<Document> listeDocument;
     
     // Constructeurs
     
@@ -53,11 +53,11 @@ public class Categorie implements Serializable {
     }
     
 	public List<Document> getListeLivre() {
-		return listeLivre;
+		return listeDocument;
 	}
 
-	public void setListeLivre(List<Document> listeLivre) {
-		this.listeLivre = listeLivre;
+	public void setListeLivre(List<Document> listeDocument) {
+		this.listeDocument = listeDocument;
 	}
 	
     // toString()

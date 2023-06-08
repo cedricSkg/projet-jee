@@ -27,4 +27,6 @@ public interface IServiceAmis {
 
 	List<DtoAmis> listerToutAmis(DtoCompte compte);
 
+	void supprimerToutAmitierUnCompte(int idCompte) throws ExceptionValidation;
+
 }

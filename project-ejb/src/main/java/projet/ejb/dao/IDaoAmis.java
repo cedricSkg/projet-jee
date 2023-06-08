@@ -24,4 +24,6 @@ public interface IDaoAmis {
 	Amis getAmitieExistant(int idDemandeur, int idReceveur);
 
 	List<Amis> listerToutAmis(Compte compte);
+
+	String supprimerToutAmitierUnCompte(int idCompte);
 }

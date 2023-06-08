@@ -13,7 +13,9 @@ import javax.inject.Inject;
 import projet.commun.dto.DtoCompte;
 import projet.commun.exception.ExceptionValidation;
 import projet.commun.service.IServiceCompte;
+import projet.ejb.dao.IDaoAmis;
 import projet.ejb.dao.IDaoCompte;
+import projet.ejb.dao.IDaoEmprunt;
 import projet.ejb.data.Compte;
 import projet.ejb.data.mapper.IMapperEjb;
 
@@ -26,6 +28,12 @@ public class ServiceCompte implements IServiceCompte {
 	private IMapperEjb mapper;
 	@Inject
 	private IDaoCompte daoCompte;
+	
+	@Inject
+	private IDaoAmis daoAmis;
+	
+	@Inject
+	private IDaoEmprunt daoEmprunt;
 
 	// Actions
 
@@ -44,6 +52,8 @@ public class ServiceCompte implements IServiceCompte {
 
 	@Override
 	public void supprimer(int idCompte) throws ExceptionValidation {
+		daoAmis.supprimerToutAmitierUnCompte(idCompte);
+		daoEmprunt.supprimerToutEmpruntUnCompte(idCompte);
 		daoCompte.supprimer(idCompte);
 	}
 
@@ -62,6 +72,7 @@ public class ServiceCompte implements IServiceCompte {
 		}
 		return liste;
 	}
+	
 
 	// Méthodes auxiliaires
 

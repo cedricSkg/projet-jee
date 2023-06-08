@@ -3,6 +3,7 @@ package projet.ejb.dao.jpa;
 import static javax.ejb.TransactionAttributeType.MANDATORY;
 
 
+
 import static javax.ejb.TransactionAttributeType.NOT_SUPPORTED;
 
 import java.util.List;
@@ -15,13 +16,11 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
-import projet.commun.dto.DtoDocument;
-import projet.ejb.dao.IDaoAmis;
 import projet.ejb.dao.IDaoCategorie;
 import projet.ejb.dao.IDaoDocument;
 import projet.ejb.data.Document;
 import projet.ejb.data.Organiser;
-import projet.ejb.data.Compte;
+
 
 
 @Stateless
@@ -44,16 +43,14 @@ public class DaoDocument implements IDaoDocument {
 	
 	
 	// Actions
-	//TODO: VOIR AVEC PROF POURQUOI L'INSERSSION NE S'EFFECTUE PAS
 	@Override
 	@TransactionAttribute( MANDATORY )
 	public int inserer(Document document, int idCategorie) {
 	    em.merge(document);
 	    em.flush();
 
-	    var elt = new Organiser(daoCategorie.retrouver(idCategorie), retrouver((int)getCurrentIdValue()));
+	    var elt = new Organiser(daoCategorie.retrouver(idCategorie), trouverDocumentAvecPlusGrandId());
 	    daoOrganiser.inserer(elt);
-	    System.out.println(elt);
 
 	    return document.getIdDocument();
 	}
@@ -117,4 +114,18 @@ System.out.println(query.getResultList());
 		return query.getResultList();
 		
 	}
+	
+	public Document trouverDocumentAvecPlusGrandId() {
+        
+        var query = em.createQuery("SELECT d FROM Document d ORDER BY d.id_document DESC");
+        query.setMaxResults(1);
+        
+        @SuppressWarnings("unchecked")
+		List<Document> result = query.getResultList();
+        if (!result.isEmpty()) {
+            return result.get(0);
+        } else {
+            return null; // Aucun document trouvé
+        }
+    }
 }

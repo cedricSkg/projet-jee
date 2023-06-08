@@ -4,6 +4,7 @@ import static javax.ejb.TransactionAttributeType.NOT_SUPPORTED;
 
 
 
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,17 +15,12 @@ import javax.ejb.TransactionAttributeType;
 import javax.inject.Inject;
 
 import projet.commun.dto.DtoEmprunt;
-import projet.commun.dto.DtoEmprunt;
-import projet.commun.dto.DtoEmprunt;
 import projet.commun.dto.DtoCompte;
 import projet.commun.dto.DtoDocument;
 import projet.commun.exception.ExceptionValidation;
 import projet.commun.service.IServiceEmprunt;
 import projet.ejb.dao.IDaoEmprunt;
-import projet.ejb.data.Compte;
 import projet.ejb.data.Document;
-import projet.ejb.data.Emprunt;
-import projet.ejb.data.Emprunt;
 import projet.ejb.data.Emprunt;
 import projet.ejb.data.mapper.IMapperEjb;
 
@@ -100,5 +96,4 @@ public class ServiceEmprunt implements IServiceEmprunt {
 	public DtoEmprunt getEmpruntExistant(int idDemandeur, int idReceveur) {
 		return mapper.map(daoEmprunt.getEmpruntExistant(idDemandeur, idReceveur));
 	}
-
 }

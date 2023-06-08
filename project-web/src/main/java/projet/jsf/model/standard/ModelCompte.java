@@ -25,7 +25,7 @@ public class ModelCompte implements Serializable {
 
 	private List<Compte> liste;
 	private List<Compte> listeAutresComptes;
-	
+
 	private Compte courant;
 
 	@EJB
@@ -33,7 +33,7 @@ public class ModelCompte implements Serializable {
 
 	@Inject
 	private IMapper mapper;
-	
+
 	@Inject
 	private ModelConnexion modelConnexion;
 
@@ -48,12 +48,12 @@ public class ModelCompte implements Serializable {
 		}
 		return liste;
 	}
-	
+
 	public List<Compte> getListeAutresComptes() {
 		if (listeAutresComptes == null) {
 			listeAutresComptes = new ArrayList<>();
 			for (DtoCompte dto : serviceCompte.listerTout()) {
-				if(dto.getId() != modelConnexion.getCompteActif().getId())
+				if (dto.getId() != modelConnexion.getCompteActif().getId())
 					listeAutresComptes.add(mapper.map(dto));
 			}
 		}
@@ -105,6 +105,7 @@ public class ModelCompte implements Serializable {
 
 	public String supprimer(Compte item) {
 		try {
+
 			serviceCompte.supprimer(item.getId());
 			liste.remove(item);
 			UtilJsf.messageInfo("Suppression effectuée avec succès.");

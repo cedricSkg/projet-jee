@@ -18,4 +18,5 @@ public interface IServiceCompte {
 
 	List<DtoCompte>	listerTout() ;
 
+
 }

@@ -1,33 +1,22 @@
-package projet.ejb.data;
+package projet.commun.dto;
 
-import static javax.persistence.GenerationType.IDENTITY;
-
+import java.io.Serializable;
 import java.util.Objects;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
-
-@Entity
-@Table(name="intervenant")
-public class Intervenant {
+@SuppressWarnings("serial")
+public class DtoIntervenant implements Serializable{
 	
-	@Id
-	@GeneratedValue( strategy = IDENTITY )
-	@Column(name="id_intervenant")
 	private int idIntervenant;
 	
 	private String nom;
 	
 	private String status;
 
-	public Intervenant() {
+	public DtoIntervenant() {
 		super();
 	}
 
-	public Intervenant(int idIntervenant, String nom, String status) {
+	public DtoIntervenant(int idIntervenant, String nom, String status) {
 		super();
 		this.idIntervenant = idIntervenant;
 		this.nom = nom;
@@ -50,7 +39,6 @@ public class Intervenant {
 		this.nom = nom;
 	}
 
-
 	public String getStatus() {
 		return status;
 	}
@@ -72,7 +60,7 @@ public class Intervenant {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Intervenant other = (Intervenant) obj;
+		DtoIntervenant other = (DtoIntervenant) obj;
 		return idIntervenant == other.idIntervenant && Objects.equals(nom, other.nom)
 				 && Objects.equals(status, other.status);
 	}
@@ -84,3 +72,4 @@ public class Intervenant {
 	}
 
 }
+

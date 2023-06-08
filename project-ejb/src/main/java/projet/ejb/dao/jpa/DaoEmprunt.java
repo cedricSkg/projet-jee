@@ -16,6 +16,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import projet.ejb.dao.IDaoEmprunt;
 import projet.ejb.data.Emprunt;
+import projet.ejb.data.Amis;
 import projet.ejb.data.Compte;
 import projet.ejb.data.Document;
 
@@ -107,6 +108,13 @@ public class DaoEmprunt implements IDaoEmprunt {
 			System.out.println("Aucune donnée trouvée");
 			return null;
 		}
+	}
+	
+	@Override
+	public String supprimerToutEmpruntUnCompte(int idCompte) {
+		var query = em.createQuery("DELETE FROM Emprunt e WHERE e.demandeur =" +idCompte+" OR e.receveur =" +idCompte);
+        query.executeUpdate();
+        return null;
 	}
 
 }

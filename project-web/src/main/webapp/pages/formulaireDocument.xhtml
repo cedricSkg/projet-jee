@@ -1,49 +1,55 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <ui:composition template="/template/page-standard.xhtml"
-    xmlns="http://www.w3.org/1999/xhtml"
-    xmlns:h="http://java.sun.com/jsf/html"
-    xmlns:f="http://java.sun.com/jsf/core"
-    xmlns:ui="http://java.sun.com/jsf/facelets"
-    xmlns:bs="http://xmlns.jcp.org/jsf/passthrough">
-    
-    <f:metadata>
-        <f:viewParam name="id" value="#{modelDocument.courant.idDocument}" />
-        <f:viewAction action="#{modelDocument.actualiserCourant()}" />
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:bs="http://xmlns.jcp.org/jsf/passthrough">
 
-        <f:viewParam name="idC" value="#{modelCategorie.courant.idCategorie}" />
-        <f:viewAction action="#{modelCategorie.actualiserCourant()}" />
-    </f:metadata>
-    <ui:define name="titre">Document: #{modelDocument.courant.sujet}</ui:define>
+	<f:metadata>
+		<f:viewParam name="id" value="#{modelDocument.courant.idDocument}" />
+		<f:viewAction action="#{modelDocument.actualiserCourant()}" />
 
-    <ui:define name="contenu">
+		<f:viewParam name="idC" value="#{modelCategorie.courant.idCategorie}" />
+		<f:viewAction action="#{modelCategorie.actualiserCourant()}" />
+	</f:metadata>
+	<ui:define name="titre">Document: #{modelDocument.courant.sujet}</ui:define>
 
-        <h:form>
-            <div class="form-group">
-                <label for="id">Id :</label>
-                <h:inputText id="id" size="5" readonly="true" value="#{modelDocument.courant.idDocument}" class="form-control" />
-                <h:message for="id" errorClass="error" />
-            </div>
+	<ui:define name="contenu">
 
-            <div class="form-group">
-                <label for="libelle">Libellé :</label>
-                <h:inputText id="libelle" size="25" value="#{modelDocument.courant.sujet}" class="form-control" />
-                <h:message for="libelle" errorClass="error" />
-            </div>
+		<h:form>
+			<div class="form-group">
+				<label for="id">Id :</label>
+				<h:inputText id="id" size="5" readonly="true"
+					value="#{modelDocument.courant.idDocument}" class="form-control" />
+				<h:message for="id" errorClass="error" />
+			</div>
 
-            <div class="form-group">
-                <label for="url">URL :</label>
-                <h:inputText id="url" size="25" value="#{modelDocument.courant.url}" class="form-control" />
-                <h:message for="url" errorClass="error" />
-            </div>
+			<div class="form-group">
+				<label for="libelle">Libellé :</label>
+				<h:inputText id="libelle" size="25"
+					value="#{modelDocument.courant.sujet}" class="form-control" />
+				<h:message for="libelle" errorClass="error" />
+			</div>
 
-            <div class="form-group">
-                <label for="libellecategorie">Catégorie :</label>
-                <h:inputText id="libellecategorie" size="25" value="#{modelCategorie.courant.libelle}" class="form-control" />
-                <h:message for="libellecategorie" errorClass="error" />
-            </div>
+			<div class="form-group">
+				<label for="url">URL :</label>
+				<h:inputText id="url" size="25" value="#{modelDocument.courant.url}"
+					class="form-control" />
+				<h:message for="url" errorClass="error" />
+			</div>
+			<div class="form-group">
+				<label for="libellecategorie">Catégorie :</label>
+				<h:inputText id="libellecategorie" size="25"
+					value="#{modelCategorie.courant.libelle}" class="form-control" />
+				<h:message for="libellecategorie" errorClass="error" />
+			</div>
 
-            <h:commandButton value="Valider" action="#{modelDocument.validerMiseAJour(modelCategorie.courant.idCategorie)}" class="btn btn-primary" />
-            <h:button value="Retour" outcome="catégories" class="btn btn-secondary" />
-        </h:form>
-    </ui:define>
+			<h:commandButton value="Valider"
+				action="#{modelDocument.validerMiseAJour(modelCategorie.courant.idCategorie)}"
+				class="btn btn-primary" />
+			<h:button value="Retour" outcome="catégories"
+				class="btn btn-secondary" />
+		</h:form>
+	</ui:define>
 </ui:composition>

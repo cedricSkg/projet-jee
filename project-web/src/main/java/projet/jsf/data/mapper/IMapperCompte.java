@@ -13,9 +13,7 @@ public interface IMapperCompte {
   
 
 	// Compte
-	
-	Compte   map( projet.ejb.data.Compte compte );
-	
+	Compte   map( projet.ejb.data.Compte source );
 	Compte   map( DtoCompte source );
 	
 	DtoCompte map( Compte source );

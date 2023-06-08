@@ -1,6 +1,7 @@
 package projet.commun.dto;
 
 import java.io.Serializable;
+import java.util.Objects;
 
 @SuppressWarnings("serial")
 public class DtoDocument implements Serializable {
@@ -12,19 +13,28 @@ public class DtoDocument implements Serializable {
 	private String sujet;
 	
 	private String url;
+	
+	private DtoIntervenant auteur;
+	
+	private DtoIntervenant editeur;
 
 	// Constructeurs
 
 	public DtoDocument() {
-	}
-
-
-	public DtoDocument(int idDocument, String sujet, String url) {
 		super();
-		this.idDocument = idDocument;
+	}
+    
+	
+    
+    public DtoDocument(int id_document, String sujet, String url, DtoIntervenant auteur, DtoIntervenant editeur) {
+		super();
+		this.idDocument = id_document;
 		this.sujet = sujet;
 		this.url = url;
+		this.auteur = auteur;
+		this.editeur = editeur;
 	}
+    
 
 
 	// Getters & setters
@@ -59,8 +69,61 @@ public class DtoDocument implements Serializable {
 	}
 
 
+
+	public DtoIntervenant getAuteur() {
+		return auteur;
+	}
+
+
+
+	public void setAuteur(DtoIntervenant auteur) {
+		this.auteur = auteur;
+	}
+
+
+
+	public DtoIntervenant getEditeur() {
+		return editeur;
+	}
+
+
+
+	public void setEditeur(DtoIntervenant editeur) {
+		this.editeur = editeur;
+	}
+
+
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(auteur, editeur, idDocument, sujet, url);
+	}
+
+
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		DtoDocument other = (DtoDocument) obj;
+		return  Objects.equals(auteur, other.auteur)
+				&& Objects.equals(editeur, other.editeur) && idDocument == other.idDocument
+				&& Objects.equals(sujet, other.sujet)
+				&& Objects.equals(url, other.url);
+	}
+
+
+
 	@Override
 	public String toString() {
-		return "DtoDocument [idDocument=" + idDocument + ", sujet=" + sujet + ", url=" + url + "]";
+		return "DtoDocument [idDocument=" + idDocument + ", sujet=" + sujet + ", url=" + url + ", auteur=" + auteur
+				+ ", editeur=" + editeur + "]";
 	}
+
+
+	
 }

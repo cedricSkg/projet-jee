@@ -1,22 +1,9 @@
-package projet.ejb.data;
-
-import static javax.persistence.GenerationType.IDENTITY;
+package projet.commun.dto;
 
 import java.util.Objects;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
-
-@Entity
-@Table(name="intervenant")
 public class Intervenant {
 	
-	@Id
-	@GeneratedValue( strategy = IDENTITY )
-	@Column(name="id_intervenant")
 	private int idIntervenant;
 	
 	private String nom;

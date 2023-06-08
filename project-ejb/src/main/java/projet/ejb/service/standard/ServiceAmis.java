@@ -83,6 +83,10 @@ public class ServiceAmis implements IServiceAmis {
 	public DtoAmis getAmitieExistant(int idDemandeur, int idReceveur) {
 		return mapper.map(daoAmis.getAmitieExistant(idDemandeur, idReceveur));
 	}
-
+	
+	@Override
+	public void supprimerToutAmitierUnCompte(int idCompte) throws ExceptionValidation {
+		daoAmis.supprimerToutAmitierUnCompte(idCompte);
+	}
 
 }
